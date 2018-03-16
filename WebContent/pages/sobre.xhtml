@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:panelGroup layout="block"
+			style="display:inline-block;
+    			width: 100%;
+    			text-align: center;
+    			margin-left: 0px;
+				margin-right: 0px;
+   				">
+			<h:outputText value="Controle Construtor" style="font-size: 30px;" />
+		</h:panelGroup>
+
+		<br />
+		<br />
+		
+		<h:panelGroup layout="block" style="width: 100%; text-align: center;">
+			<p:graphicImage library="images" name="construtor.jpg" width="500px" />
+		</h:panelGroup>
+
+		<br />
+
+		<div align="center">
+			<h:panelGroup layout="block" style="text-align: center; width: 50%">
+				<h:outputText value="Versão 1.0" />
+
+				<br />
+				<br />
+				<h:outputText
+					value="Copyright 2018 DevSoftware. Todos os direitos reservados. A DevSoftware desenvolve esse projeto com o intuito de estabelecer novas fronteiras no ambito e nicho de controle de estoque e vendas de materiais de construção." />
+			</h:panelGroup>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<f:event listener="#{MBUsuario.carregarListagem}" type="preRenderView" />
+
+		<h:form id="formUsuarioListagem">
+			<p:dataTable id="tabelaUsuarios" widgetVar="tabelaUsuarioListagem"
+				emptyMessage="Nenhum Usuário encontrado..."
+				value="#{MBUsuario.itens}" var="item" paginator="true" rows="10"
+				filteredValue="#{MBUsuario.itensFiltrados}">
+
+				<f:facet name="header">
+					<h:outputText value="Usuario - Listagem" />
+				</f:facet>
+
+				<p:column headerText="Id" style="text-align: center;"
+					sortBy="#{item.idUsuario}" filterBy="#{item.idUsuario}">
+					<h:outputText value="#{item.idUsuario}" />
+				</p:column>
+
+				<p:column headerText="Nome" sortBy="#{item.nome}"
+					filterBy="#{item.nome}">
+					<h:outputText value="#{item.nome}" />
+				</p:column>
+
+				<p:column headerText="Senha" style="text-align: center;"
+					sortBy="#{item.senha}" filterBy="#{item.senha}">
+					<h:outputText value="#{item.senha}" />
+				</p:column>
+
+
+				<p:column headerText="Opções" width="80">
+					<p:commandButton icon="ui-icon-trash"
+						oncomplete="PF('dialogUsuarioExcluir').show();"
+						update=":formUsuarioExcluir:panelUsuarioExcluir">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBUsuario.usuario}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil"
+						oncomplete="PF('dialogUsuarioEditar').show();"
+						update=":mensagemGlobal :formUsuarioEditar:panelUsuarioEditar">
+						<f:setPropertyActionListener value="#{tem}"
+							target="#{MBUsuario.usuario}" />
+					</p:commandButton>
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						oncomplete="PF('dialogUsuarioNovo').show();"
+						actionListener="#{MBUsuario.prepararNovo}"
+						update=":formUsuarioNovo:panelUsuarioNovo :mensagemGlobal" />
+
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+		<!-- Tela novo Usuario -->
+		<p:dialog widgetVar="dialogUsuarioNovo" closable="false"
+			resizable="false" draggable="false" appendTo="@(body)" modal="true"
+			header="Usuário - Novo">
+			<h:form id="formUsuarioNovo">
+				<h:panelGrid columns="2" id="panelUsuarioNovo">
+					<p:outputLabel for="textoNomeUsuarioNovo" value="Nome:" />
+					<p:inputText id="textoNomeUsuarioNovo"
+						value="#{MBUsuario.usuario.nome}" size="30" maxlength="50"
+						required="true" requiredMessage="O campo Nome é obrigatório..." />
+
+					<p:outputLabel for="textoSenhaUsuarioNovo" value="Senha:" />
+					<p:inputText id="textoSenhaUsuarioNovo"
+						value="#{MBUsuario.usuario.senha}" size="30" maxlength="50"
+						required="true" requiredMessage="O campo senha é obrigatório..." />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Gravar" actionListener="#{MBUsuario.novo}"
+						oncomplete="PF('dialogUsuarioNovo').hide(); tabelaUsuarioListagem.clearFilters();"
+						update=":formUsuarioListagem:tabelaUsuarios :mensagemGlobal" />
+
+					<p:commandButton value="Cancelar" process="@this"
+						oncomplete="PF('dialogUsuarioNovo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- Tela excluir Usuário -->
+		<p:dialog closable="false" resizable="false" draggable="false"
+			appendTo="@(body)" modal="true" header="Usuario - Excluir"
+			widgetVar="dialogUsuarioExcluir">
+			<h:form id="formUsuarioExcluir">
+				<h:panelGrid columns="2" id="panelUsuarioExcluir">
+
+					<p:outputLabel value="Id:" />
+					<h:outputText value="#{MBUsuario.usuario.idUsuario}" />
+
+					<p:outputLabel value="Nome:" />
+					<h:outputText value="#{MBUsuario.usuario.nome}" />
+
+					<p:outputLabel value="Senha:" />
+					<h:outputText value="#{MBUsuario.usuario.senha}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Excluir"
+						actionListener="#{MBUsuario.excluir}"
+						update=":mensagemGlobal :formUsuarioListagem:tabelaUsuarios"
+						oncomplete="PF('dialogUsuarioExcluir').hide();  tabelaUsuarioListagem.clearFilters();" />
+
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dialogUsuarioExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- Tela Editar Usuário -->
+		<p:dialog closable="false" resizable="false" draggable="false"
+			appendTo="@(body)" modal="true" header="Usuário - Editar"
+			widgetVar="dialogUsuarioEditar">
+			<h:form id="formUsuarioEditar">
+				<h:panelGrid columns="2" id="panelUsuarioEditar">
+					<p:outputLabel value="Id" />
+					<h:outputText value="#{MBUsuario.usuario.idUsuario}" />
+
+					<p:outputLabel for="textoNomeUsuarioNovo" value="Nome:" />
+					<h:inputText id="textoNomeUsuarioNovo"
+						value="#{MBUsuario.usuario.nome}" maxlength="50" size="30"
+						required="true" requiredMessage="O campo nome é obrigatório..." />
+
+					<p:outputLabel for="TextoSenhaUsuarioNovo" value="Senha:" />
+					<h:inputText id="TextoSenhaUsuarioNovo"
+						value="#{MBUsuario.usuario.senha}" size="10" required="true"
+						requiredMessage="O campo Senha é obrigatório..." />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar"
+						actionListener="#{MBUsuario.editar}"
+						oncomplete="verificarCampos(xhr, status, args, 'dialogUsuarioEditar', 'tabelaUsuarios');"
+						update=":mensagemGlobal :formUsuarioListagem:tabelaUsuarios" />
+
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dialogUsuarioEditar').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

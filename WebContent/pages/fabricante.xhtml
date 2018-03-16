@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="formFabricanteListagem">
+			<p:dataTable id="tabelaFabricantes"
+				emptyMessage="Nenhum registro encontrado."
+				value="#{MBFabricante.itens}" var="item" paginator="true" rows="10">
+
+				<f:facet name="header">
+					Fabricante - Listagem
+				</f:facet>
+
+				<p:column style="text-align: center" headerText="Id" sortBy="#{item.idFabricante}"
+					filterBy="#{item.idFabricante}">
+					<h:outputText value="#{item.idFabricante}" />
+				</p:column>
+
+				<p:column headerText="Nome" sortBy="#{item.nome}"
+					filterBy="#{item.nome}">
+					<h:outputText value="#{item.nome}" />
+				</p:column>
+
+				<p:column headerText="Contato" sortBy="#{item.contato}">
+					<h:outputText value="#{item.contato}" />
+				</p:column>
+
+				<p:column headerText="Opções" width="80">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{MBFabricante.prepararExcluir}"
+						oncomplete="PF('dialogFabricanteExcluir').show();"
+						update=":formFabricanteExcluir:panelFabricanteExcluir" />
+
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{MBFabricante.prepararEditar}"
+						oncomplete="PF('dialogFabricanteEditar').show();"
+						update=":formFabricanteEditar:panelFabricanteEditar" />
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						actionListener="#{MBFabricante.prepararNovo}"
+						oncomplete="PF('dialogFabricanteNovo').show();"
+						update=":formFabricanteNovo:panelFabricanteNovo" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+		<!-- Tela novo fabricante -->
+		<p:dialog widgetVar="dialogFabricanteNovo" modal="true"
+			appendTo="@(body)" closable="false" draggable="false"
+			resizable="false" header="Fabricante - Novo">
+			<h:form id="formFabricanteNovo">
+				<h:panelGrid id="panelFabricanteNovo" columns="2">
+					<p:outputLabel value="Nome: " />
+					<p:inputText size="30" maxlength="50"
+						value="#{MBFabricante.fabricante.nome}" required="true" requiredMessage="O campo nome é obrigatório..."/>
+
+					<p:outputLabel value="Contato: " />
+					<p:inputText size="30" maxlength="50"
+						value="#{MBFabricante.fabricante.contato}" required="true" requiredMessage="O campo contato é obrigatório..."/>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Gravar"
+						actionListener="#{MBFabricante.novo}"
+						oncomplete="verificarCampos(xhr, status, args, 'dialogFabricanteNovo', 'tabelaFabricantes')"
+						update=":formFabricanteListagem:tabelaFabricantes :mensagemGlobal" />
+
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dialogFabricanteNovo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- Tela Excluir -->
+		<p:dialog widgetVar="dialogFabricanteExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Fabricante - Excluir">
+			<h:form id="formFabricanteExcluir">
+				<h:panelGrid columns="2" id="panelFabricanteExcluir">
+					<h:outputLabel value="Id:" />
+					<h:outputText value="#{MBFabricante.fabricante.idFabricante}" />
+
+					<h:outputLabel value="Nome:" />
+					<h:outputText value="#{MBFabricante.fabricante.nome}" />
+
+					<h:outputLabel value="Contato:" />
+					<h:outputText value="#{MBFabricante.fabricante.contato}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Excluir"
+						actionListener="#{MBFabricante.excluir}"
+						oncomplete="PF(dialogFabricanteExcluir').hide();"
+						update=":formFabricanteListagem:tabelaFabricantes :mensagemGlobal" />
+
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dialogFabricanteExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- Tela editar -->
+		<p:dialog widgetVar="dialogFabricanteEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Fabricante - Editar">
+			<h:form id="formFabricanteEditar">
+				<h:panelGrid columns="2" id="panelFabricanteEditar">
+					<h:outputLabel value="Id:" />
+					<h:outputText value="#{MBFabricante.fabricante.idFabricante}" />
+
+					<h:outputLabel value="Nome:" />
+					<h:inputText value="#{MBFabricante.fabricante.nome}" size="30"
+						maxlength="50" />
+
+					<h:outputLabel value="Contato:" />
+					<h:inputText value="#{MBFabricante.fabricante.contato}" size="30"
+						maxlength="50" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar"
+						actionListener="#{MBFabricante.editar}"
+						oncomplete="PF('dialogFabricanteEditar').hide();"
+						update=":formFabricanteListagem:tabelaFabricantes :mensagemGlobal" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dialogFabricanteEditar').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+
+
+</ui:composition>
