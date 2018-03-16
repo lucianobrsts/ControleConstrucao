@@ -61,7 +61,7 @@
 						actionListener="#{MBProduto.prepararEditar}"
 						oncomplete="PF('dialogProdutoEditar').show();"
 						update=":mensagemGlobal :formProdutoEditar:panelProdutoEditar">
-						<f:setPropertyActionListener value="#{tem}"
+						<f:setPropertyActionListener value="#{item}"
 							target="#{MBProduto.produto}" />
 					</p:commandButton>
 				</p:column>
@@ -181,7 +181,7 @@
 
 					<p:outputLabel value="Fabricante:" />
 					<p:selectOneMenu
-						value="#{MBProduto.produto.fabricante.idFabricante}" filter="true">
+						value="#{MBProduto.produto.fabricante.idFabricante}">
 						<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
 
 						<f:selectItems value="#{MBProduto.comboFabricantes}" var="item"
