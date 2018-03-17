@@ -11,7 +11,7 @@ import br.com.construcao.factory.ConexaoFactory;
 
 public class UsuarioDAO {
 
-	public void salvar(Usuario u) throws SQLException {
+	public void salvar(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO usuario ");
 		sql.append("(nome, senha) ");
@@ -21,13 +21,13 @@ public class UsuarioDAO {
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
 
-		comando.setString(1, u.getNome());
-		comando.setString(2, u.getSenha());
+		comando.setString(1, user.getNome());
+		comando.setString(2, user.getSenha());
 
 		comando.executeUpdate();
 	}
 
-	public void excluir(Usuario u) throws SQLException {
+	public void excluir(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("DELETE FROM usuario ");
 		sql.append("WHERE idUsuario = ? ");
@@ -36,7 +36,7 @@ public class UsuarioDAO {
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
 
-		comando.setLong(1, u.getIdUsuario());
+		comando.setLong(1, user.getIdUsuario());
 
 		comando.executeUpdate();
 	}
@@ -56,17 +56,17 @@ public class UsuarioDAO {
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 
 		while (resultado.next()) {
-			Usuario u = new Usuario();
-			u.setIdUsuario(resultado.getLong("idUsuario"));
-			u.setNome(resultado.getString("nome"));
-			u.setSenha(resultado.getString("senha"));
+			Usuario user = new Usuario();
+			user.setIdUsuario(resultado.getLong("idUsuario"));
+			user.setNome(resultado.getString("nome"));
+			user.setSenha(resultado.getString("senha"));
 
-			lista.add(u);
+			lista.add(user);
 		}
 
 		return lista;
 	}
-	
+
 	public void editar(Usuario u) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE usuario ");
@@ -81,6 +81,86 @@ public class UsuarioDAO {
 		comando.setLong(3, u.getIdUsuario());
 
 		comando.executeUpdate();
+	}
+
+	public Usuario buscarPorCodigo(Usuario user) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT idUsuario, nome, senha ");
+		sql.append("FROM usuario ");
+		sql.append("WHERE idUsuario = ? ");
+
+		Connection conexao = ConexaoFactory.conectar();
+
+		PreparedStatement comando = conexao.prepareStatement(sql.toString());
+
+		comando.setLong(1, user.getIdUsuario());
+
+		ResultSet resultado = comando.executeQuery();
+
+		Usuario retorno = null;
+
+		if (resultado.next()) {
+			retorno = new Usuario();
+			retorno.setIdUsuario(resultado.getLong("idUsuario"));
+			retorno.setNome(resultado.getString("nome"));
+			retorno.setSenha(resultado.getString("senha"));
+		}
+		return retorno;
+	}
+
+	public ArrayList<Usuario> buscarPorNome(Usuario user) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT * ");
+		sql.append("FROM usuario ");
+		sql.append("WHERE nome LIKE ? ");
+		sql.append("ORDER BY nome ASC ");
+
+		Connection conexao = ConexaoFactory.conectar();
+
+		PreparedStatement comando = conexao.prepareStatement(sql.toString());
+
+		comando.setString(1, "%" + user.getNome() + "%");
+
+		ResultSet resultado = comando.executeQuery();
+
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+
+		while (resultado.next()) {
+			Usuario item = new Usuario();
+			item.setIdUsuario(resultado.getLong("IdUsuario"));
+			item.setNome(resultado.getString("nome"));
+			item.setSenha(resultado.getString("senha"));
+
+			lista.add(item);
+		}
+
+		return lista;
+
+	}
+
+	public Usuario autenticar(Usuario user) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT * ");
+		sql.append("FROM usuario ");
+		sql.append("WHERE nome = ? AND senha = ? ");
+
+		Connection conexao = ConexaoFactory.conectar();
+
+		PreparedStatement comando = conexao.prepareStatement(sql.toString());
+		comando.setString(1, user.getNome());
+		comando.setString(2, user.getSenha());
+		
+		ResultSet resultado = comando.executeQuery();
+		
+		Usuario retorno = null;
+		
+		if(resultado.next()) {
+			retorno = new Usuario();
+			retorno.setNome(resultado.getString("nome"));
+			retorno.setSenha(resultado.getString("senha"));
+		}
+		
+		return retorno;
 	}
 
 }

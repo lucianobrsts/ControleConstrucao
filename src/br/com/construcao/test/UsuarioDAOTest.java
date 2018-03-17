@@ -25,7 +25,7 @@ public class UsuarioDAOTest {
 
 	@Test
 	@Ignore
-	public void deletar() throws SQLException {
+	public void excluir() throws SQLException {
 		Usuario u = new Usuario();
 		u.setIdUsuario(2L);
 
@@ -60,4 +60,5 @@ public class UsuarioDAOTest {
 		UsuarioDAO dao = new UsuarioDAO();
 		dao.editar(u);
 	}
+	
 }

@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/modeloSistema.xhtml">
-	
+
 	<ui:define name="head">
 		<h:outputStylesheet library="css" name="estilos.css" />
 	</ui:define>
@@ -16,6 +16,26 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+
+		<p:dialog widgetVar="dialogLogin" closable="false" draggable="false"
+			resizable="false" modal="true" appendTo="@(body)"
+			header="Usuário - Login">
+			<h:form id="formLoginUsuario">
+				<p:panelGrid columns="2" id="panelLoginUsuario">
+					<p:outputLabel value="Login:" />
+					<h:inputText value="" required="true" requiredMessage="O login do usuário é obrigatório..."/>
+					
+					<p:outputLabel value="Senha:"/>
+					<h:inputText value="" required="true" requiredMessage="A senha do usuário é obrigatória..."/>
+				</p:panelGrid>
+				
+				<p:panelGrid>
+				<p:commandButton value="Entrar" />
+				
+				<p:commandButton value="Cancelar"/>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
 
 	</ui:define>
 
