@@ -85,11 +85,14 @@
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" actionListener="#{MBUsuario.novo}"
-						oncomplete="PF('dialogUsuarioNovo').hide(); tabelaUsuarioListagem.clearFilters();"
+						oncomplete="tabelaUsuarioListagem.clearFilters();"
 						update=":formUsuarioListagem:tabelaUsuarios :mensagemGlobal" />
-
+						
 					<p:commandButton value="Cancelar" process="@this"
-						oncomplete="PF('dialogUsuarioNovo').hide();" />
+						onclick="PF('dialogUsuarioNovo').hide();">
+						
+						<p:resetInput target="panelUsuarioNovo" />
+						</p:commandButton>
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
