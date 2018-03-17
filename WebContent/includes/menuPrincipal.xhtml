@@ -26,9 +26,31 @@
 			<f:facet name="options">
 				<p:inputText style="margin-right:10px" placeholder="Buscar" />
 				<p:commandButton type="button" value="Logar"
-					icon="ui-icon-unlocked" />
+					onclick="PF('dialogLogin').show();" icon="ui-icon-unlocked" />
 			</f:facet>
 		</p:menubar>
+
+		<p:dialog widgetVar="dialogLogin" closable="false" draggable="false"
+			resizable="false" modal="true" appendTo="@(body)"
+			header="Usuário - Login">
+			<h:form id="formLoginUsuario">
+				<h:panelGrid columns="2" id="panelLoginUsuario">
+					<p:outputLabel value="Login:" />
+					<h:inputText value="" required="true"
+						requiredMessage="O login do usuário é obrigatório..." />
+
+					<p:outputLabel value="Senha:" />
+					<h:inputText value="" required="true"
+						requiredMessage="A senha do usuário é obrigatória..." />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Entrar" />
+
+					<p:commandButton value="Cancelar" onclick="PF('dialogLogin').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
 	</h:form>
-	
+
 </ui:composition>
