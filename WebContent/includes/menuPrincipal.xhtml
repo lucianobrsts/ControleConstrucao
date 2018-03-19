@@ -22,35 +22,41 @@
 			<p:submenu label="Ajuda">
 				<p:menuitem value="Sobre" outcome="/pages/sobre.xhtml" />
 			</p:submenu>
+			
+			<p:menuitem icon="ui-icon-locked" value="Login"
+				onclick="PF('dialogLogin').show();" />
 
 			<f:facet name="options">
 				<p:inputText style="margin-right:10px" placeholder="Buscar" />
-				<p:commandButton type="button" value="Logar"
-					onclick="PF('dialogLogin').show();" icon="ui-icon-unlocked" />
+				<p:commandButton type="button" value="Logout"
+					icon="ui-icon-unlocked" />
 			</f:facet>
 		</p:menubar>
-
-		<p:dialog widgetVar="dialogLogin" closable="false" draggable="false"
+	</h:form>
+	
+	<p:dialog widgetVar="dialogLogin" closable="false" draggable="false"
 			resizable="false" modal="true" appendTo="@(body)"
 			header="Usuário - Login">
-			<h:form id="formLoginUsuario">
+			<h:form id="formLogin">
 				<h:panelGrid columns="2" id="panelLoginUsuario">
-					<p:outputLabel value="Login:" />
-					<h:inputText value="" required="true"
+					<p:outputLabel value="Usuário:" />
+					<h:inputText value="#{MBUsuario.usuarioLogado.nome}" required="true"
 						requiredMessage="O login do usuário é obrigatório..." />
 
 					<p:outputLabel value="Senha:" />
-					<h:inputText value="" required="true"
+					<h:inputSecret value="#{MBUsuario.usuarioLogado.senha}" required="true"
 						requiredMessage="A senha do usuário é obrigatória..." />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
-					<p:commandButton value="Entrar" />
+					<p:commandButton value="Entrar"
+						actionListener="#{MBUsuario.autenticar}"
+						update=":mensagemGlobal :formLogin:panelLoginUsuario" />
 
-					<p:commandButton value="Cancelar" onclick="PF('dialogLogin').hide();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogLogin').hide();" />
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
-	</h:form>
 
 </ui:composition>

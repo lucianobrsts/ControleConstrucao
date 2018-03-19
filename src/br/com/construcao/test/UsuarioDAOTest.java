@@ -17,8 +17,8 @@ public class UsuarioDAOTest {
 		Usuario u = new Usuario();
 		UsuarioDAO dao = new UsuarioDAO();
 
-		u.setNome("Luciano Brito");
-		u.setSenha("123456");
+		u.setNome("Admin");
+		u.setSenha("Admin");
 
 		dao.salvar(u);
 	}

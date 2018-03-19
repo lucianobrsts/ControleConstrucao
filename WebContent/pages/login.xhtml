@@ -12,8 +12,32 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+		<f:event listener="#{MBUsuario.carregarListagem}" type="preRenderView" />
+
+		<p:dialog widgetVar="dialogLogin" closable="false" draggable="false"
+			resizable="false" modal="true" appendTo="@(body)"
+			header="Usuário - Login">
+			<h:form id="formLoginUsuario">
+				<h:panelGrid columns="2" id="panelLoginUsuario">
+					<p:outputLabel value="Usuário:" />
+					<h:inputText value="#{MBUsuario.usuarioLogado.nome}" required="true"
+						requiredMessage="O login do usuário é obrigatório..." />
+
+					<p:outputLabel value="Senha:" />
+					<h:inputSecret value="#{MBUsuario.usuarioLogado.senha}" required="true"
+						requiredMessage="A senha do usuário é obrigatória..." />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Entrar"
+						actionListener="#{MBUsuario.autenticar}"
+						update=":mensagemGlobal :formLoginUsuario:panelLoginUsuario" />
+
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogLogin').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
 
 	</ui:define>
-
-
 </ui:composition>
