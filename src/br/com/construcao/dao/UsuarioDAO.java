@@ -14,8 +14,8 @@ public class UsuarioDAO {
 	public void salvar(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO usuario ");
-		sql.append("(nome, senha) ");
-		sql.append("VALUES (?, ?)");
+		sql.append("(nome, senha, tipo) ");
+		sql.append("VALUES (?, ?, ?)");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -23,6 +23,7 @@ public class UsuarioDAO {
 
 		comando.setString(1, user.getNome());
 		comando.setString(2, user.getSenha());
+		comando.setString(3, user.getTipo());
 
 		comando.executeUpdate();
 	}
@@ -43,7 +44,7 @@ public class UsuarioDAO {
 
 	public ArrayList<Usuario> listar() throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * ");
+		sql.append("SELECT idUsuario, nome, senha, tipo ");
 		sql.append("FROM usuario ");
 		sql.append("ORDER BY nome ASC ");
 
@@ -60,6 +61,7 @@ public class UsuarioDAO {
 			user.setIdUsuario(resultado.getLong("idUsuario"));
 			user.setNome(resultado.getString("nome"));
 			user.setSenha(resultado.getString("senha"));
+			user.setTipo(resultado.getString("tipo"));
 
 			lista.add(user);
 		}
@@ -67,25 +69,26 @@ public class UsuarioDAO {
 		return lista;
 	}
 
-	public void editar(Usuario u) throws SQLException {
+	public void editar(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE usuario ");
-		sql.append("SET nome = ?, senha = ? ");
+		sql.append("SET nome = ?, senha = ?, tipo = ? ");
 		sql.append("WHERE idUsuario = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
-		comando.setString(1, u.getNome());
-		comando.setString(2, u.getSenha());
-		comando.setLong(3, u.getIdUsuario());
+		comando.setString(1, user.getNome());
+		comando.setString(2, user.getSenha());
+		comando.setString(3, user.getTipo());
+		comando.setLong(4, user.getIdUsuario());
 
 		comando.executeUpdate();
 	}
 
 	public Usuario buscarPorCodigo(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT idUsuario, nome, senha ");
+		sql.append("SELECT idUsuario, nome, senha, tipo ");
 		sql.append("FROM usuario ");
 		sql.append("WHERE idUsuario = ? ");
 
@@ -104,6 +107,7 @@ public class UsuarioDAO {
 			retorno.setIdUsuario(resultado.getLong("idUsuario"));
 			retorno.setNome(resultado.getString("nome"));
 			retorno.setSenha(resultado.getString("senha"));
+			retorno.setTipo(resultado.getString("tipo"));
 		}
 		return retorno;
 	}
@@ -130,6 +134,7 @@ public class UsuarioDAO {
 			item.setIdUsuario(resultado.getLong("IdUsuario"));
 			item.setNome(resultado.getString("nome"));
 			item.setSenha(resultado.getString("senha"));
+			item.setTipo(resultado.getString("tipo"));
 
 			lista.add(item);
 		}

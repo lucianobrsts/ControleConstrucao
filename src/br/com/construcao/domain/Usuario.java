@@ -5,6 +5,7 @@ public class Usuario {
 	private Long idUsuario;
 	private String nome;
 	private String senha;
+	private String tipo;
 
 	public Long getIdUsuario() {
 		return idUsuario;
@@ -28,6 +29,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

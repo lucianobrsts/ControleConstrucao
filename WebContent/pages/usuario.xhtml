@@ -37,6 +37,10 @@
 				<p:column headerText="Senha" style="text-align: center;">
 					<h:outputText value="#{item.senha}" />
 				</p:column>
+				
+				<p:column headerText="Tipo">
+					<h:outputText value="#{item.tipo}" />
+				</p:column>
 
 
 				<p:column headerText="Opções" width="80">
@@ -80,12 +84,17 @@
 					<p:password id="textoSenhaUsuarioNovo"
 						value="#{MBUsuario.usuario.senha}" size="30" maxlength="50"
 						required="true" requiredMessage="O campo senha é obrigatório..." />
-
+						
+						<p:outputLabel for="radio" value="Tipo:" />
+						<p:selectOneRadio id="radio" value="#{MBUsuario.usuario.tipo}">
+							<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+							<f:selectItem itemLabel="Vendedor" itemValue="Vendedor"/>
+						</p:selectOneRadio>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" actionListener="#{MBUsuario.novo}"
-						oncomplete="tabelaUsuarioListagem.clearFilters();"
+						oncomplete="('dialogUsuarioNovo'.hide();) tabelaUsuarioListagem.clearFilters();"
 						update=":formUsuarioListagem:tabelaUsuarios :mensagemGlobal" />
 						
 					<p:commandButton value="Cancelar" process="@this"
@@ -112,6 +121,9 @@
 
 					<p:outputLabel value="Senha:" />
 					<h:outputText value="#{MBUsuario.usuario.senha}" />
+					
+					<p:outputLabel value="Tipo:" />
+					<h:outputText value="#{MBUsuario.usuario.tipo}" />
 
 				</h:panelGrid>
 
@@ -145,6 +157,12 @@
 					<h:inputText id="TextoSenhaUsuarioNovo"
 						value="#{MBUsuario.usuario.senha}" size="10" required="true"
 						requiredMessage="O campo Senha é obrigatório..." />
+						
+						<p:outputLabel for="radio" value="Tipo:" />
+						<p:selectOneRadio id="radio" value="#{MBUsuario.usuario.tipo}">
+							<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+							<f:selectItem itemLabel="Vendedor" itemValue="Vendedor"/>
+						</p:selectOneRadio>
 
 				</h:panelGrid>
 

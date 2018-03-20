@@ -14,13 +14,14 @@ public class UsuarioDAOTest {
 	@Test
 	@Ignore
 	public void salvar() throws SQLException {
-		Usuario u = new Usuario();
+		Usuario user = new Usuario();
 		UsuarioDAO dao = new UsuarioDAO();
 
-		u.setNome("Admin");
-		u.setSenha("Admin");
+		user.setNome("Teste 8");
+		user.setSenha("Testando");
+		user.setTipo("Administrador");
 
-		dao.salvar(u);
+		dao.salvar(user);
 	}
 
 	@Test
@@ -40,10 +41,11 @@ public class UsuarioDAOTest {
 		UsuarioDAO dao = new UsuarioDAO();
 		ArrayList<Usuario> lista = dao.listar();
 
-		for (Usuario u : lista) {
-			System.out.println("Codigo: " + u.getIdUsuario());
-			System.out.println("Nome: " + u.getNome());
-			System.out.println("Valor: " + u.getSenha());
+		for (Usuario user : lista) {
+			System.out.println("Codigo: " + user.getIdUsuario());
+			System.out.println("Nome: " + user.getNome());
+			System.out.println("Valor: " + user.getSenha());
+			System.out.println("Tipo: " + user.getTipo());
 			System.out.println();
 		}
 	}
@@ -51,14 +53,15 @@ public class UsuarioDAOTest {
 	@Test
 	@Ignore
 	public void editar() throws SQLException {
-		Usuario u = new Usuario();
+		Usuario user = new Usuario();
 		
-		u.setNome("Luciano Brito");
-		u.setSenha("testeSenha");
-		u.setIdUsuario(1L);
+		user.setNome("Roberto Kennedy");
+		user.setSenha("teste");
+		user.setTipo("Administrador");
+		user.setIdUsuario(7L);
 		
 		UsuarioDAO dao = new UsuarioDAO();
-		dao.editar(u);
+		dao.editar(user);
 	}
 	
 }
