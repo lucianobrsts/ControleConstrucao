@@ -41,9 +41,16 @@
 			</h:form>
 		</p:dialog>
 
-		<h:outputText value="#{MBUsuario.usuario.nome}" />
-		<h:outputText value="#{MBAutenticar.usuarioLogado.nome}" />
-		<h:outputText value="teste" />
+		<h:form id="formLoginUsuario2">
+				<h:panelGrid columns="2" id="panelLoginUsuario2">
+					<p:outputLabel value="Usuário:" />
+					<h:outputText value="#{}"
+						required="true"
+						requiredMessage="O login do usuário é obrigatório..." />
+
+				</h:panelGrid>
+
+			</h:form>
 
 	</ui:define>
 </ui:composition>
