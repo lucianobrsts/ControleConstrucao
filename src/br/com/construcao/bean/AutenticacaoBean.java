@@ -1,17 +1,18 @@
 package br.com.construcao.bean;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
-import br.com.construcao.dao.UsuarioDAO;
+import org.omnifaces.util.Faces;
+import org.omnifaces.util.Messages;
+
 import br.com.construcao.domain.Usuario;
-import br.com.construcao.util.JSFUtil;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "MBAutenticar")
-@ViewScoped
+@SessionScoped
 public class AutenticacaoBean {
 
 	private Usuario usuarioLogado;
@@ -28,22 +29,26 @@ public class AutenticacaoBean {
 		this.usuarioLogado = usuarioLogado;
 	}
 
+	/*
+	 * public void autenticar() { try { UsuarioDAO dao = new UsuarioDAO();
+	 * usuarioLogado = dao.autenticar(usuarioLogado);
+	 * 
+	 * if (usuarioLogado == null) {
+	 * JSFUtil.adicionarMensagemErro("Nome e/ou senha inválidos!"); } else {
+	 * JSFUtil.adicionarMensagemSucesso("Usuário autenticado com sucesso!"); } }
+	 * catch (RuntimeException e) {
+	 * JSFUtil.adicionarMensagemErro("Erro ao tentar autenticar no sistema!");
+	 * e.getMessage();
+	 * 
+	 * } catch (SQLException e) { e.printStackTrace(); } }
+	 */
+
 	public void autenticar() {
 		try {
-			UsuarioDAO dao = new UsuarioDAO();
-			usuarioLogado = dao.autenticar(usuarioLogado);
-
-			if (usuarioLogado == null) {
-				JSFUtil.adicionarMensagemErro("Nome e/ou senha inválidos!");
-			} else {
-				JSFUtil.adicionarMensagemSucesso("Usuário autenticado com sucesso!");
-			}
-		} catch (RuntimeException e) {
-			JSFUtil.adicionarMensagemErro("Erro ao tentar autenticar no sistema!");
-			e.getMessage();
-
-		} catch (SQLException e) {
+			Faces.redirect("./pages/principal.xhtml");
+		} catch (IOException e) {
 			e.printStackTrace();
+			Messages.addGlobalError(e.getMessage());
 		}
 	}
 

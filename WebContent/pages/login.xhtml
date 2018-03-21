@@ -24,7 +24,7 @@
 						requiredMessage="O login do usuário é obrigatório..." />
 
 					<p:outputLabel value="Senha:" />
-					<h:inputSecret value="#{MBAutenticar.usuarioLogado.senha}"
+					<h:inputSecret value="#{MBAutenticar.usuarioLogado.nome}"
 						required="true"
 						requiredMessage="A senha do usuário é obrigatória..." />
 				</h:panelGrid>
@@ -40,17 +40,6 @@
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
-
-		<h:form id="formLoginUsuario2">
-				<h:panelGrid columns="2" id="panelLoginUsuario2">
-					<p:outputLabel value="Usuário:" />
-					<h:outputText value="#{}"
-						required="true"
-						requiredMessage="O login do usuário é obrigatório..." />
-
-				</h:panelGrid>
-
-			</h:form>
 
 	</ui:define>
 </ui:composition>

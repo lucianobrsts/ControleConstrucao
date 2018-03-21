@@ -3,6 +3,7 @@ package br.com.construcao.test;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -36,6 +37,7 @@ public class UsuarioDAOTest {
 	}
 
 	@Test
+	@Ignore
 	public void listar() throws SQLException {
 		UsuarioDAO dao = new UsuarioDAO();
 		ArrayList<Usuario> lista = dao.listar();
@@ -61,6 +63,15 @@ public class UsuarioDAOTest {
 
 		UsuarioDAO dao = new UsuarioDAO();
 		dao.editar(user);
+	}
+	
+	@Test
+	public void autenticar() throws SQLException {
+		Usuario user = new UsuarioDAO().autenticar("Luciano Brito", "testeSenha");
+		
+		//System.out.println("Usuário: " + user);
+		
+		Assert.assertNotNull(user);
 	}
 
 }
