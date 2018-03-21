@@ -36,7 +36,6 @@ public class UsuarioDAOTest {
 	}
 
 	@Test
-	@Ignore
 	public void listar() throws SQLException {
 		UsuarioDAO dao = new UsuarioDAO();
 		ArrayList<Usuario> lista = dao.listar();
@@ -54,14 +53,14 @@ public class UsuarioDAOTest {
 	@Ignore
 	public void editar() throws SQLException {
 		Usuario user = new Usuario();
-		
+
 		user.setNome("Roberto Kennedy");
 		user.setSenha("teste");
 		user.setTipo("Administrador");
 		user.setIdUsuario(7L);
-		
+
 		UsuarioDAO dao = new UsuarioDAO();
 		dao.editar(user);
 	}
-	
+
 }

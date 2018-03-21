@@ -19,20 +19,6 @@ public class UsuarioBean {
 
 	private Usuario usuario;
 
-	private Usuario usuarioLogado;
-
-	public Usuario getUsuarioLogado() {
-		if (usuarioLogado == null) {
-			usuarioLogado = new Usuario();
-		}
-
-		return usuarioLogado;
-	}
-
-	public void setUsuarioLogado(Usuario usuarioLogado) {
-		this.usuarioLogado = usuarioLogado;
-	}
-
 	public ArrayList<Usuario> getItens() {
 		return itens;
 	}
@@ -113,32 +99,6 @@ public class UsuarioBean {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
 		}
-	}
-
-	public void autenticar() {
-		try {
-			UsuarioDAO dao = new UsuarioDAO();
-			usuarioLogado = dao.autenticar(usuarioLogado);
-
-			if (usuarioLogado == null) {
-				JSFUtil.adicionarMensagemErro("Nome e/ou senha inválidos!");
-			} else {
-				JSFUtil.adicionarMensagemSucesso("Usuário autenticado com sucesso!");
-			}
-		} catch (RuntimeException e) {
-			JSFUtil.adicionarMensagemErro("Erro ao tentar autenticar no sistema!");
-			e.getMessage();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public String sair() {
-		
-		usuarioLogado = null;
-		
-		return "/pages/principal.xhtml?faces-redirect=true";
 	}
 
 }

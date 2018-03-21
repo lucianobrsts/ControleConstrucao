@@ -8,7 +8,7 @@
 
 	<h:form>
 		<p:menubar>
-		
+
 			<p:submenu label="Arquivo">
 				<p:menuitem value="Venda" outcome="/pages/venda.xhtml" />
 				<p:menuitem value="Sair" />
@@ -20,22 +20,21 @@
 				<p:menuitem value="Usuários" outcome="/pages/usuario.xhtml" />
 			</p:submenu>
 
-			<p:submenu label="Ajuda">
-				<p:menuitem value="Sobre" outcome="/pages/sobre.xhtml" />
-			</p:submenu>
-			
+			<p:menuitem icon="ui-icon-help" value="Sobre" outcome="/pages/sobre.xhtml" />
+
 			<p:menuitem icon="ui-icon-home" value="Home"
 				outcome="/pages/principal.xhtml" />
-			
+
 			<p:menuitem icon="ui-icon-locked" value="Login"
 				outcome="/pages/login.xhtml" />
 
 			<f:facet name="options">
-				<p:inputText style="margin-right:10px" placeholder="Buscar" />
-				<p:commandButton type="button" value="Logout"
-					icon="ui-icon-unlocked" />
+				<p:outputLabel style="margin-right:10px;" value="Usuário:" />
+				<h:outputText value="#{MBUsuario.usuario.nome}" />
 			</f:facet>
+
 		</p:menubar>
+
 	</h:form>
 
 </ui:composition>

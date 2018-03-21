@@ -12,7 +12,6 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<f:event listener="#{MBUsuario.carregarListagem}" type="preRenderView" />
 
 		<p:dialog widgetVar="dialogLogin" closable="false" draggable="false"
 			resizable="false" modal="true" appendTo="@(body)" visible="true"
@@ -20,19 +19,19 @@
 			<h:form id="formLoginUsuario">
 				<h:panelGrid columns="2" id="panelLoginUsuario">
 					<p:outputLabel value="Usuário:" />
-					<h:inputText value="#{MBUsuario.usuarioLogado.nome}"
+					<h:inputText value="#{MBAutenticar.usuarioLogado.nome}"
 						required="true"
 						requiredMessage="O login do usuário é obrigatório..." />
 
 					<p:outputLabel value="Senha:" />
-					<h:inputSecret value="#{MBUsuario.usuarioLogado.senha}"
+					<h:inputSecret value="#{MBAutenticar.usuarioLogado.senha}"
 						required="true"
 						requiredMessage="A senha do usuário é obrigatória..." />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Entrar"
-						actionListener="#{MBUsuario.autenticar}"
+						actionListener="#{MBAutenticar.autenticar}"
 						update=":mensagemGlobal :formLoginUsuario:panelLoginUsuario"
 						oncomplete="PF('dialogLogin').hide(); dialogLogin.cleanFilters();" />
 
@@ -41,6 +40,10 @@
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
+
+		<h:outputText value="#{MBUsuario.usuario.nome}" />
+		<h:outputText value="#{MBAutenticar.usuarioLogado.nome}" />
+		<h:outputText value="teste" />
 
 	</ui:define>
 </ui:composition>
