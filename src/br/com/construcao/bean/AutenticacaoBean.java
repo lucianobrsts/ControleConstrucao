@@ -54,7 +54,7 @@ public class AutenticacaoBean {
 				return;
 			}
 
-			Faces.redirect("./pages/principal.xhtml");
+			Faces.redirect("faces/pages/principal.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
 			Messages.addGlobalError(e.getMessage());

@@ -33,7 +33,7 @@
 					<p:commandButton value="Entrar"
 						actionListener="#{MBAutenticar.autenticar}"
 						update=":mensagemGlobal :formLoginUsuario:panelLoginUsuario"
-						oncomplete="PF('dialogLogin').hide(); dialogLogin.cleanFilters();" />
+						oncomplete="dialogLogin.cleanFilters();" />
 
 					<p:commandButton value="Cancelar"
 						onclick="PF('dialogLogin').hide();" />

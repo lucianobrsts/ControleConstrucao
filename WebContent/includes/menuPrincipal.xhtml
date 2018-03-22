@@ -20,7 +20,8 @@
 				<p:menuitem value="Usuários" outcome="/pages/usuario.xhtml" />
 			</p:submenu>
 
-			<p:menuitem icon="ui-icon-info" value="Sobre" outcome="/pages/sobre.xhtml" />
+			<p:menuitem icon="ui-icon-info" value="Sobre"
+				outcome="/pages/sobre.xhtml" />
 
 			<p:menuitem icon="ui-icon-home" value="Home"
 				outcome="/pages/principal.xhtml" />
@@ -29,12 +30,11 @@
 				outcome="/pages/login.xhtml" />
 
 			<f:facet name="options">
-				<p:outputLabel style="margin-right:10px;" value="Olá" />
-				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}" />
+				<p:outputLabel value="Olá: " />
+				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}" style="margin-right:20px;"/>
+				<p:commandButton  type="button" value="Logout" icon="ui-icon-extlink" />
 			</f:facet>
-
 		</p:menubar>
-
 	</h:form>
 
 </ui:composition>
