@@ -11,7 +11,7 @@
 
 			<p:submenu label="Arquivo">
 				<p:menuitem value="Venda" outcome="/pages/venda.xhtml" />
-				<p:menuitem value="Sair" />
+				<p:menuitem value="Sair" outcome="/pages/principal.xhtml"/>
 			</p:submenu>
 
 			<p:submenu label="Cadastro">
@@ -26,20 +26,21 @@
 				<p:menuitem value="Personalizado" />
 			</p:submenu>
 
-			<p:menuitem icon="ui-icon-info" value="Sobre"
-				outcome="/pages/sobre.xhtml" />
-
-			<p:menuitem icon="ui-icon-home" value="Home"
-				outcome="/pages/principal.xhtml" />
-
 			<p:menuitem icon="ui-icon-person" value="Login"
 				outcome="/pages/login.xhtml" />
+
+			<p:menuitem icon="ui-icon-info" value="Sobre"
+				outcome="/pages/sobre.xhtml" />
 
 			<f:facet name="options">
 				<p:outputLabel value="Olá: " />
 				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}"
 					style="margin-right:20px;" />
-				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" actionListener="#{MBAutenticar.sair}" />
+
+				<p:commandButton type="button" value="Login" icon="ui-icon-circle-check" />
+
+				<p:commandButton type="button" value="Logout" icon="ui-icon-circle-close"
+					actionListener="#{MBAutenticar.sair}" />
 			</f:facet>
 		</p:menubar>
 	</h:form>
