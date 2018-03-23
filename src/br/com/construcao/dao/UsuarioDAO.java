@@ -143,27 +143,6 @@ public class UsuarioDAO {
 
 	}
 
-	/*
-	 * public Usuario autenticar(Usuario user) throws SQLException { StringBuilder
-	 * sql = new StringBuilder(); sql.append("SELECT * ");
-	 * sql.append("FROM usuario "); sql.append("WHERE nome = ? AND senha = ? ");
-	 * 
-	 * Connection conexao = ConexaoFactory.conectar();
-	 * 
-	 * PreparedStatement comando = conexao.prepareStatement(sql.toString());
-	 * comando.setString(1, user.getNome()); comando.setString(2, user.getSenha());
-	 * 
-	 * ResultSet resultado = comando.executeQuery();
-	 * 
-	 * Usuario retorno = null;
-	 * 
-	 * if(resultado.next()) { retorno = new Usuario();
-	 * retorno.setNome(resultado.getString("nome"));
-	 * retorno.setSenha(resultado.getString("senha")); }
-	 * 
-	 * return retorno; }
-	 */
-
 	public Usuario autenticar(String nome, String senha) throws SQLException {
 		Usuario usuario = null;
 		String sql = "SELECT * FROM usuario WHERE nome = ? AND senha = ?";

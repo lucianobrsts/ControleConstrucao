@@ -47,7 +47,6 @@ public class AutenticacaoBean {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
-			usuarioLogado = new Usuario();
 			usuarioLogado = dao.autenticar(usuario.getNome(), usuario.getSenha());
 
 			if (usuarioLogado == null) {
@@ -70,8 +69,8 @@ public class AutenticacaoBean {
 	}
 
 	public boolean temPermissoes(List<String> permissoes) {
-		for (String persmissao : permissoes) {
-			if (usuarioLogado.getTipo().equals(persmissao)) {
+		for (String permissao : permissoes) {
+			if (usuarioLogado.getTipo().equals(permissao)) {
 				return true;
 			}
 		}
