@@ -39,7 +39,7 @@
 				<p:outputLabel value="Olá: " />
 				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}"
 					style="margin-right:20px;" />
-				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" actionListener="#{MBAutenticar.sair}" />
 			</f:facet>
 		</p:menubar>
 	</h:form>

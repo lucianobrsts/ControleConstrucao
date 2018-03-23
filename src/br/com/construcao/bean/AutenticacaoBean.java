@@ -3,6 +3,7 @@ package br.com.construcao.bean;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -17,13 +18,10 @@ import br.com.construcao.domain.Usuario;
 @SessionScoped
 public class AutenticacaoBean {
 
+	private Usuario usuario;
 	private Usuario usuarioLogado;
 
 	public Usuario getUsuarioLogado() {
-		if (usuarioLogado == null) {
-			usuarioLogado = new Usuario();
-		}
-
 		return usuarioLogado;
 	}
 
@@ -31,25 +29,27 @@ public class AutenticacaoBean {
 		this.usuarioLogado = usuarioLogado;
 	}
 
-	/*
-	 * public void autenticar() { try { UsuarioDAO dao = new UsuarioDAO();
-	 * usuarioLogado = dao.autenticar(usuarioLogado);
-	 * 
-	 * if (usuarioLogado == null) {
-	 * JSFUtil.adicionarMensagemErro("Nome e/ou senha inválidos!"); } else {
-	 * JSFUtil.adicionarMensagemSucesso("Usuário autenticado com sucesso!"); } }
-	 * catch (RuntimeException e) {
-	 * JSFUtil.adicionarMensagemErro("Erro ao tentar autenticar no sistema!");
-	 * e.getMessage();
-	 * 
-	 * } catch (SQLException e) { e.printStackTrace(); } }
-	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@PostConstruct
+	public void iniciar() {
+		usuario = new Usuario();
+	}
 
 	public void autenticar() {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
-			Usuario usuarioLogadoAplicacao = dao.autenticar(usuarioLogado.getNome(), usuarioLogado.getSenha());
-			if (usuarioLogadoAplicacao == null) {
+
+			usuarioLogado = new Usuario();
+			usuarioLogado = dao.autenticar(usuario.getNome(), usuario.getSenha());
+
+			if (usuarioLogado == null) {
 				Messages.addGlobalError("Usuário e/ou senha incorretos!");
 				return;
 			}
@@ -64,11 +64,8 @@ public class AutenticacaoBean {
 		}
 	}
 
-	public String sair() {
+	public void sair() {
 
-		usuarioLogado = null;
-
-		return "/pages/principal.xhtml?faces-redirect=true";
 	}
 
 }

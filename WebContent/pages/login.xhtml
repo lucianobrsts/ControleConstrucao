@@ -18,13 +18,13 @@
 			header="Usuário - Login">
 			<h:form id="formLoginUsuario">
 				<h:panelGrid columns="2" id="panelLoginUsuario">
+
 					<p:outputLabel value="Usuário:" />
-					<h:inputText value="#{MBAutenticar.usuarioLogado.nome}"
-						required="true"
+					<h:inputText value="#{MBAutenticar.usuario.nome}" required="true"
 						requiredMessage="O login do usuário é obrigatório..." />
 
 					<p:outputLabel value="Senha:" />
-					<h:inputSecret value="#{MBAutenticar.usuarioLogado.senha}"
+					<h:inputSecret value="#{MBAutenticar.usuario.senha}"
 						required="true"
 						requiredMessage="A senha do usuário é obrigatória..." />
 				</h:panelGrid>
@@ -33,7 +33,7 @@
 					<p:commandButton value="Entrar"
 						actionListener="#{MBAutenticar.autenticar}"
 						update=":mensagemGlobal :formLoginUsuario:panelLoginUsuario"
-						oncomplete="dialogLogin.cleanFilters();" />
+						oncomplete="PF('dialogLogin').hide(); dialogLogin.cleanFilters();" />
 
 					<p:commandButton value="Cancelar"
 						onclick="PF('dialogLogin').hide();" />
