@@ -2,6 +2,7 @@ package br.com.construcao.bean;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -66,6 +67,15 @@ public class AutenticacaoBean {
 
 	public void sair() {
 
+	}
+
+	public boolean temPermissoes(List<String> permissoes) {
+		for (String persmissao : permissoes) {
+			if (usuarioLogado.getTipo().equals(persmissao)) {
+				return true;
+			}
+		}
+		return true;
 	}
 
 }
