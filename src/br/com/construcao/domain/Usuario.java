@@ -41,7 +41,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Nome: " + nome + "\nSenha: " + senha;
+		return "\nNome: " + nome + "\nSenha: " + senha + "\nTipo: " + tipo;
 	}
 
 }

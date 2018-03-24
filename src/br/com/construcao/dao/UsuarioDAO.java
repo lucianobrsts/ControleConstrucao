@@ -143,9 +143,9 @@ public class UsuarioDAO {
 
 	}
 
-	public Usuario autenticar(String nome, String senha) throws SQLException {
+	public Usuario autenticar(String nome, String senha, String tipo) throws SQLException {
 		Usuario usuario = null;
-		String sql = "SELECT * FROM usuario WHERE nome = ? AND senha = ?";
+		String sql = "SELECT * FROM usuario WHERE nome = ? AND senha = ? AND tipo = ?";
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -153,6 +153,7 @@ public class UsuarioDAO {
 
 		comando.setObject(1, nome);
 		comando.setObject(2, senha);
+		comando.setObject(3, tipo);
 
 		ResultSet resultado = comando.executeQuery();
 
@@ -160,6 +161,7 @@ public class UsuarioDAO {
 			usuario = new Usuario();
 			usuario.setNome(resultado.getString("nome"));
 			usuario.setSenha(resultado.getString("senha"));
+			usuario.setTipo(resultado.getString("tipo"));
 		}
 
 		return usuario;

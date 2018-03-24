@@ -64,13 +64,21 @@ public class UsuarioDAOTest {
 		UsuarioDAO dao = new UsuarioDAO();
 		dao.editar(user);
 	}
-	
+
 	@Test
+	@Ignore
 	public void autenticar() throws SQLException {
-		Usuario user = new UsuarioDAO().autenticar("Luciano Brito", "testeSenha");
-		
-		//System.out.println("Usuário: " + user);
-		
+
+		UsuarioDAO dao = new UsuarioDAO();
+
+		String nome = "Luciano Brito";
+		String senha = "123456";
+		String tipo = "Vendedor";
+
+		Usuario user = dao.autenticar(nome, senha, tipo);
+
+		System.out.println("Usuário: " + user);
+
 		Assert.assertNotNull(user);
 	}
 

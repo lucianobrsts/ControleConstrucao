@@ -47,7 +47,7 @@ public class AutenticacaoBean {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
-			usuarioLogado = dao.autenticar(usuario.getNome(), usuario.getSenha());
+			usuarioLogado = dao.autenticar(usuario.getNome(), usuario.getSenha(), usuario.getTipo());
 
 			if (usuarioLogado == null) {
 				Messages.addGlobalError("Usuário e/ou senha incorretos!");
@@ -74,7 +74,8 @@ public class AutenticacaoBean {
 				return true;
 			}
 		}
-		return true;
+		System.out.println("Tipo Usuário Logado: " + usuarioLogado.getTipo());
+		return false;
 	}
 
 }
