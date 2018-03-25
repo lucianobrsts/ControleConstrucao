@@ -13,18 +13,39 @@
 
 	<ui:define name="conteudo">
 
-		<h:form id="formProdutoListagem">
-			<p:dataTable id="tabelaVenda" widgetVar="tabelaVendaBalcao">
+		<h:form>
+			<p:panel header="Produtos">
+				<p:dataTable id="tabela" emptyMessage="Nenhum produto encontrado..."
+					value="#{MBVendas.produtos}" var="produto" paginator="true"
+					rows="3">
 
-				<f:facet name="header">
-					<h:outputText value="Venda - Balcão" />
-				</f:facet>
+					<p:column headerText="Nome" sortBy="#{produto.nome}"
+						filterBy="#{produto.nome}">
+						<h:outputText value="#{produto.nome}" />
+					</p:column>
 
+					<p:column headerText="Quantidade" style="text-align: center;">
+						<h:outputText value="#{produto.quantidade}" />
+					</p:column>
 
-				<f:facet name="footer">
-					<h:outputText value="Controle Construtor" />
-				</f:facet>
-			</p:dataTable>
+					<p:column headerText="Valor" style="text-align: center;"
+						sortBy="#{produto.valor}" filterBy="#{produto.valor}">
+						<h:outputText value="#{produto.valor}" />
+					</p:column>
+
+					<p:column headerText="Fabricante"
+						sortBy="#{produto.fabricante.nome}"
+						filterBy="#{produto.fabricante.nome}">
+						<h:outputText value="#{produto.fabricante.nome}" />
+					</p:column>
+
+					<p:column headerText="Opções" width="80">
+						<p:commandButton icon=" ui-icon-plus" />
+
+					</p:column>
+
+				</p:dataTable>
+			</p:panel>
 		</h:form>
 	</ui:define>
 
