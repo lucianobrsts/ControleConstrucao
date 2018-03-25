@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.construcao.dao.ProdutoDAO;
+import br.com.construcao.domain.ItemVenda;
 import br.com.construcao.domain.Produto;
 import br.com.construcao.util.JSFUtil;
 
@@ -17,6 +18,15 @@ import br.com.construcao.util.JSFUtil;
 public class VendaBean {
 
 	private List<Produto> produtos;
+	private List<ItemVenda> itensVenda;
+
+	public List<ItemVenda> getItensVenda() {
+		return itensVenda;
+	}
+
+	public void setItensVenda(List<ItemVenda> itensVenda) {
+		this.itensVenda = itensVenda;
+	}
 
 	public List<Produto> getProdutos() {
 		return produtos;

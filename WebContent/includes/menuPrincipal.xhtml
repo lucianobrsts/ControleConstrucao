@@ -14,7 +14,8 @@
 				<p:menuitem value="Sair" outcome="/pages/principal.xhtml" />
 			</p:submenu>
 
-			<p:submenu label="Cadastro" rendered="#{MBAutenticar.temPermissoes(['Administrador'])}">
+			<p:submenu label="Cadastro"
+				rendered="#{MBAutenticar.temPermissoes(['Administrador'])}">
 				<p:menuitem value="Fabricantes" outcome="/pages/fabricante.xhtml" />
 				<p:menuitem value="Produtos" outcome="/pages/produto.xhtml" />
 				<p:menuitem value="Usuários" outcome="/pages/usuario.xhtml" />
@@ -39,11 +40,13 @@
 				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}"
 					style="margin-right:20px;" />
 
-				<p:commandButton type="button" value="Login" action="./pages/login.xhtml?faces-redirect=true" ajax="false"
+				<p:commandButton type="button" value="Login"
+					action="/pages/login.xhtml?faces-redirect=true" ajax="false"
 					icon="ui-icon-circle-check" />
 
-				<p:commandButton type="button" value="Logout" 
-					icon="ui-icon-circle-close" actionListener="#{MBAutenticar.sair}" />
+				<p:commandButton type="button" value="Logout"
+					icon="ui-icon-circle-close" actionListener="#{MBAutenticar.sair}"
+					action="/login.xhtml?faces-redirect=true" ajax="false" />
 			</f:facet>
 		</p:menubar>
 	</h:form>

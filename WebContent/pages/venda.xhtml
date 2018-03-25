@@ -13,9 +13,10 @@
 
 	<ui:define name="conteudo">
 
-		<h:form>
+		<h:form id="formVendas">
 			<p:panel header="Produtos">
-				<p:dataTable id="tabela" emptyMessage="Nenhum produto encontrado..."
+				<p:dataTable id="tabelaProdutos"
+					emptyMessage="Nenhum produto encontrado..."
 					value="#{MBVendas.produtos}" var="produto" paginator="true"
 					rows="3">
 
@@ -41,8 +42,48 @@
 
 					<p:column headerText="Opções" width="80">
 						<p:commandButton icon=" ui-icon-plus" />
-
 					</p:column>
+				</p:dataTable>
+			</p:panel>
+
+			<p:panel header="Itens de Compra">
+				<p:dataTable id="tabelaItens"
+					emptyMessage="Nenhum registro encontrado..."
+					value="#{MBVendas.itensVenda}" var="itemVenda" paginator="true"
+					rows="3">
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{ItemVenda.produto.nome}" />
+					</p:column>
+
+					<p:column headerText="Preço Unitário" style="text-align: center;">
+						<h:outputText value="#{itemVenda.produto.valor}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+
+
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{itemVenda.quantidade}" />
+					</p:column>
+
+					<p:column headerText="Preço Parcial">
+						<h:outputText value="#{itemVenda.precoParcial}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Opções" width="80">
+						<p:commandButton icon=" ui-icon-minus" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+
+			<p:panel header="Total">
+				<p:dataTable id="tabelaTotais"
+					emptyMessage="Nenhum produto encontrado..."
+					value="#{MBVendas.produtos}" var="produto">
+
 
 				</p:dataTable>
 			</p:panel>

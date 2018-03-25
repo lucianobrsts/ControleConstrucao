@@ -64,10 +64,6 @@ public class AutenticacaoBean {
 		}
 	}
 
-	public void sair() {
-
-	}
-
 	public boolean temPermissoes(List<String> permissoes) {
 		for (String permissao : permissoes) {
 			if (usuarioLogado.getTipo().equals(permissao)) {
@@ -75,6 +71,10 @@ public class AutenticacaoBean {
 			}
 		}
 		return false;
+	}
+
+	public void sair() {
+
 	}
 
 }
