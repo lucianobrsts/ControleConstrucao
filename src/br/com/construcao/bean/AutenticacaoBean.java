@@ -74,7 +74,6 @@ public class AutenticacaoBean {
 				return true;
 			}
 		}
-		System.out.println("Tipo Usuário Logado: " + usuarioLogado.getTipo());
 		return false;
 	}
 
