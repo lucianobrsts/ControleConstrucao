@@ -17,4 +17,10 @@ public class JSFUtil {
 		contexto.addMessage(null, msg);
 	}
 
+	public static void adicionarMensagemInfo(String mensagem) {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, mensagem, mensagem);
+		FacesContext contexto = FacesContext.getCurrentInstance();
+		contexto.addMessage(null, msg);
+	}
+
 }

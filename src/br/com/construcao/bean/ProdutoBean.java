@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.FileUploadEvent;
+
 import br.com.construcao.dao.FabricanteDAO;
 import br.com.construcao.dao.ProdutoDAO;
 import br.com.construcao.domain.Fabricante;
@@ -130,5 +132,13 @@ public class ProdutoBean {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
 		}
+	}
+
+	public void upload(FileUploadEvent evento) {
+		String nome = evento.getFile().getFileName();
+		String tipo = evento.getFile().getContentType();
+		long tamanho = evento.getFile().getSize();
+
+		JSFUtil.adicionarMensagemInfo("Nome: " + nome + "\nTIpo: " + tipo + "\nTamanho: " + tamanho);
 	}
 }

@@ -37,4 +37,10 @@
 		<param-name>javax.faces.CONFIG_FILES</param-name>
 		<param-value>WEB-INF/faces-config.xml</param-value>
 	</context-param>
+
+	<!-- Definição do mecanismo de upload -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
 </web-app>
