@@ -12,7 +12,6 @@ import br.com.construcao.domain.ItemVenda;
 import br.com.construcao.domain.Produto;
 import br.com.construcao.util.JSFUtil;
 
-@SuppressWarnings("deprecation")
 @ManagedBean(name = "MBVendas")
 @ViewScoped
 public class VendaBean {

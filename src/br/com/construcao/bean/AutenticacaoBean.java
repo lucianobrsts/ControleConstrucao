@@ -14,7 +14,6 @@ import org.omnifaces.util.Messages;
 import br.com.construcao.dao.UsuarioDAO;
 import br.com.construcao.domain.Usuario;
 
-@SuppressWarnings("deprecation")
 @ManagedBean(name = "MBAutenticar")
 @SessionScoped
 public class AutenticacaoBean {

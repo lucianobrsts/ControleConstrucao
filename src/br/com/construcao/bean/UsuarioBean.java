@@ -10,7 +10,6 @@ import br.com.construcao.dao.UsuarioDAO;
 import br.com.construcao.domain.Usuario;
 import br.com.construcao.util.JSFUtil;
 
-@SuppressWarnings("deprecation")
 @ManagedBean(name = "MBUsuario")
 @ViewScoped
 public class UsuarioBean {

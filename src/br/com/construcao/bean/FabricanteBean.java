@@ -12,7 +12,6 @@ import br.com.construcao.dao.FabricanteDAO;
 import br.com.construcao.domain.Fabricante;
 import br.com.construcao.util.JSFUtil;
 
-@SuppressWarnings("deprecation")
 @ManagedBean(name = "MBFabricante")
 @ViewScoped
 public class FabricanteBean {
