@@ -1,5 +1,9 @@
 package br.com.construcao.bean;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -7,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 import br.com.construcao.dao.FabricanteDAO;
 import br.com.construcao.dao.ProdutoDAO;
@@ -14,7 +19,6 @@ import br.com.construcao.domain.Fabricante;
 import br.com.construcao.domain.Produto;
 import br.com.construcao.util.JSFUtil;
 
-@SuppressWarnings("deprecation")
 @ManagedBean(name = "MBProduto")
 @ViewScoped
 public class ProdutoBean {
@@ -135,10 +139,18 @@ public class ProdutoBean {
 	}
 
 	public void upload(FileUploadEvent evento) {
-		String nome = evento.getFile().getFileName();
-		String tipo = evento.getFile().getContentType();
-		long tamanho = evento.getFile().getSize();
 
-		JSFUtil.adicionarMensagemInfo("Nome: " + nome + "\nTIpo: " + tipo + "\nTamanho: " + tamanho);
+		try {
+			UploadedFile arquivoUpload = evento.getFile();
+
+			Path arquivoTemporario = Files.createTempFile(null, null);
+
+			Files.copy(arquivoUpload.getInputstream(), arquivoTemporario, StandardCopyOption.REPLACE_EXISTING);
+
+			produto.setCaminho(arquivoTemporario.toString());
+		} catch (IOException e) {
+			JSFUtil.adicionarMensagemErro("Aconteceu um erro ao realizar o upload do arquivo.");
+			e.printStackTrace();
+		}
 	}
 }

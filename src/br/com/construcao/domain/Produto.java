@@ -6,18 +6,15 @@ public class Produto {
 	private String nome;
 	private Long quantidade;
 	private Double valor;
-	private Fabricante fabricante  = new Fabricante();
+	private Fabricante fabricante = new Fabricante();
+	private String caminho;
 
-	public Produto() {
-
+	public String getCaminho() {
+		return caminho;
 	}
 
-	public Produto(Long idProduto, String nome, Long quantidade, double valor, Fabricante fabricante) {
-		this.idProduto = idProduto;
-		this.nome = nome;
-		this.quantidade = quantidade;
-		this.valor = valor;
-		this.fabricante = fabricante;
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
 	}
 
 	public Long getIdProduto() {
