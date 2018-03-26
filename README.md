@@ -5,7 +5,7 @@ Esse arquivo descreve características e funcionalidades do Projeto Constrole Co
 
 ## Tecnologias utilizadas:
 
-- O projeto tem como finalidade constrolar o fluxo de cadastro, usuários, produtos e fabricantes, restrinção de privilégios dos usuários, vendas de produtos com imagens e geração de relatórios. 
+- O projeto tem como finalidade constrolar o fluxo de cadastro de usuários, produtos, fabricantes e vendas, restrinção de privilégios dos usuários, vendas de produtos com imagens e geração de relatórios por período e dia. 
 
 ## Tecnologias utilizadas:
 
