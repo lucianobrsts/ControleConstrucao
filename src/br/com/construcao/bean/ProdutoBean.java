@@ -86,6 +86,12 @@ public class ProdutoBean {
 
 	public void novo() {
 		try {
+
+			if (produto.getCaminho() == null) {
+				JSFUtil.adicionarMensagemErro("O campo foto é obrigatório.");
+				return;
+			}
+
 			ProdutoDAO dao = new ProdutoDAO();
 			dao.salvar(produto);
 
@@ -142,6 +148,8 @@ public class ProdutoBean {
 			ProdutoDAO dao = new ProdutoDAO();
 
 			dao.editar(produto);
+			
+			produto.setCaminho("F:/Documentos/Java/imagens/UploadsConstrutor/" + produto.getIdProduto() + ".png");
 
 			itens = dao.listar();
 

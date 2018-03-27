@@ -12,8 +12,7 @@
 	</ui:define>
 
 	<ui:define name="foto">
-		<p:graphicImage width="180px"
-			style="text-align: center;"></p:graphicImage>
+		<p:graphicImage width="180px" style="text-align: center;"></p:graphicImage>
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -113,7 +112,13 @@
 
 					<p:outputLabel for="foto" value="Imagem:" />
 					<p:fileUpload id="foto" mode="advanced"
-						fileUploadListener="#{MBProduto.upload}" update=":mensagemGlobal" auto="true"/>
+						fileUploadListener="#{MBProduto.upload}"
+						update=":mensagemGlobal :formProdutoNovo:foto" auto="true" />
+
+					<p:outputLabel for="foto" value="Foto:" />
+					<p:graphicImage id="foto" value="#{MBImagem.foto}">
+						<f:param name="caminho" value="#{MBProduto.produto.caminho}" />
+					</p:graphicImage>
 
 				</h:panelGrid>
 
