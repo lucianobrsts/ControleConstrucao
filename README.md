@@ -13,7 +13,7 @@ Esse arquivo descreve características e funcionalidades do Projeto Constrole Co
 - Eclispe
 - Java
 - JSF
-- JavaScritp
+- JavaScript
 - Ajax
 - Git
 - Junit
