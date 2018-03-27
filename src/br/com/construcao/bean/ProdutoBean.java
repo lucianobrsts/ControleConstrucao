@@ -3,6 +3,7 @@ package br.com.construcao.bean;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -88,10 +89,17 @@ public class ProdutoBean {
 			ProdutoDAO dao = new ProdutoDAO();
 			dao.salvar(produto);
 
+			Path origem = Paths.get(produto.getCaminho());
+			Path destino = Paths.get("F:/Documentos/Java/imagens/UploadsConstrutor/" + produto.getIdProduto() + ".png");
+			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
+
 			itens = dao.listar();
 
 			JSFUtil.adicionarMensagemSucesso("Produto salvo com sucesso...");
 		} catch (SQLException e) {
+			e.printStackTrace();
+			JSFUtil.adicionarMensagemErro(e.getMessage());
+		} catch (IOException e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
 		}
@@ -103,10 +111,16 @@ public class ProdutoBean {
 
 			dao.excluir(produto);
 
+			Path arquivo = Paths.get("F:/Documentos/Java/imagens/UploadsConstrutor/" + produto.getIdProduto() + ".png");
+			Files.deleteIfExists(arquivo);
+
 			itens = dao.listar();
 
 			JSFUtil.adicionarMensagemSucesso("Produto Excluído com sucesso...");
 		} catch (SQLException e) {
+			e.printStackTrace();
+			JSFUtil.adicionarMensagemErro(e.getMessage());
+		} catch (IOException e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
 		}
@@ -147,6 +161,7 @@ public class ProdutoBean {
 
 			Files.copy(arquivoUpload.getInputstream(), arquivoTemporario, StandardCopyOption.REPLACE_EXISTING);
 
+			JSFUtil.adicionarMensagemSucesso("Upload realizado com sucesso!");
 			produto.setCaminho(arquivoTemporario.toString());
 		} catch (IOException e) {
 			JSFUtil.adicionarMensagemErro("Aconteceu um erro ao realizar o upload do arquivo.");
