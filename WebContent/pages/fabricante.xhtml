@@ -94,7 +94,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar"
 						actionListener="#{MBFabricante.novo}"
-						oncomplete="PF('dialogFabricanteNovo'.hide();) tabelaFabricanteListagem.clearFilters();"
+						oncomplete="PF('dialogFabricanteNovo').hide(); tabelaFabricanteListagem.clearFilters();"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
@@ -125,7 +125,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Excluir"
 						actionListener="#{MBFabricante.excluir}"
-						oncomplete="PF(dialogFabricanteExcluir'.hide();) tabelaFabricantesListagem.clearFilters();"
+						oncomplete="PF(dialogFabricanteExcluir').hide(); tabelaFabricantesListagem.clearFilters();"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
@@ -159,8 +159,9 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Editar"
 						actionListener="#{MBFabricante.editar}"
-						oncomplete="PF('dialogFabricanteEditar'.hide();)"
+						oncomplete="PF('dialogFabricanteEditar').hide();"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
+					
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogFabricanteEditar').hide();" />
 				</h:panelGrid>

@@ -44,8 +44,10 @@
 				</p:column>
 
 				<p:column headerText="Valor" style="text-align: center;"
-					sortBy="#{item.valor}" filterBy="#{item.valor}">
-					<h:outputText value="#{item.valor}" />
+					sortBy="#{item.valor}">
+					<h:outputText value="#{item.valor}">
+						<f:convertNumber pattern="0.00" />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Fabricante" sortBy="#{item.fabricante.nome}"
