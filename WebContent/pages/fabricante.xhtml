@@ -16,7 +16,8 @@
 			type="preRenderView" />
 
 		<h:form id="formFabricante">
-			<p:dataTable id="tabelaFabricantes" widgetVar="tabelaFabricanteListagem"
+			<p:dataTable id="tabelaFabricantes"
+				widgetVar="tabelaFabricanteListagem"
 				emptyMessage="Nenhum registro encontrado."
 				value="#{MBFabricante.itens}" var="item" paginator="true" rows="10"
 				filteredValue="#{MBFabricante.itensFiltrados}">
@@ -75,9 +76,10 @@
 						value="#{MBFabricante.fabricante.nome}" required="true"
 						requiredMessage="O campo nome é obrigatório..." />
 
-					<p:outputLabel value="Contato: " />
-					<p:inputText size="30" maxlength="50"
+					<p:outputLabel for="contato" value="Contato: " />
+					<p:inputMask id="contato" size="14" maxlength="14"
 						value="#{MBFabricante.fabricante.contato}" required="true"
+						mask="(99) 99999-9999"
 						requiredMessage="O campo contato é obrigatório..." />
 				</h:panelGrid>
 				<h:panelGrid columns="2">
