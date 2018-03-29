@@ -14,15 +14,16 @@ public class FabricanteDAO {
 	public void salvar(Fabricante f) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO fabricante ");
-		sql.append("(nome, contato) ");
-		sql.append("VALUES (?, ?)");
+		sql.append("(nome, celular, fixo) ");
+		sql.append("VALUES (?, ?, ?)");
 
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
 
 		comando.setString(1, f.getNome());
-		comando.setString(2, f.getContato());
+		comando.setString(2, f.getCelular());
+		comando.setString(3, f.getFixo());
 
 		comando.executeUpdate();
 	}
@@ -44,22 +45,23 @@ public class FabricanteDAO {
 	public void editar(Fabricante f) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE fabricante ");
-		sql.append("SET nome = ?, contato = ? ");
+		sql.append("SET nome = ?, celular = ?, fixo = ? ");
 		sql.append("WHERE idfabricante = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
 		comando.setString(1, f.getNome());
-		comando.setString(2, f.getContato());
-		comando.setLong(3, f.getIdFabricante());
+		comando.setString(2, f.getCelular());
+		comando.setString(3, f.getFixo());
+		comando.setLong(4, f.getIdFabricante());
 
 		comando.executeUpdate();
 	}
 
 	public Fabricante buscarPorId(Fabricante f) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" SELECT idfabricante, nome, contato ");
+		sql.append(" SELECT idfabricante, nome, celular, fixo ");
 		sql.append(" FROM fabricante ");
 		sql.append(" WHERE idfabricante = ? ");
 
@@ -76,7 +78,8 @@ public class FabricanteDAO {
 			retorno = new Fabricante();
 			retorno.setIdFabricante(resultado.getLong("idFabricante"));
 			retorno.setNome(resultado.getString("nome"));
-			retorno.setContato(resultado.getString("contato"));
+			retorno.setCelular(resultado.getString("celular"));
+			retorno.setFixo(resultado.getString("fixo"));
 		}
 
 		return retorno;
@@ -100,7 +103,8 @@ public class FabricanteDAO {
 			Fabricante f = new Fabricante();
 			f.setIdFabricante(resultado.getLong("idFabricante"));
 			f.setNome(resultado.getString("nome"));
-			f.setContato(resultado.getString("contato"));
+			f.setCelular(resultado.getString("celular"));
+			f.setFixo(resultado.getString("fixo"));
 
 			lista.add(f);
 		}
@@ -128,7 +132,8 @@ public class FabricanteDAO {
 			Fabricante item = new Fabricante();
 			item.setIdFabricante(resultado.getLong("idFabricante"));
 			item.setNome(resultado.getString("nome"));
-			item.setContato(resultado.getString("contato"));
+			item.setCelular(resultado.getString("celular"));
+			item.setFixo(resultado.getString("fixo"));
 
 			lista.add(item);
 		}

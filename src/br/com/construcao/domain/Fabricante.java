@@ -4,17 +4,8 @@ public class Fabricante {
 
 	private Long idFabricante;
 	private String nome;
-	private String contato;
-
-	public Fabricante() {
-
-	}
-
-	public Fabricante(Long idFabricante, String nome, String contato) {
-		this.idFabricante = idFabricante;
-		this.nome = nome;
-		this.contato = contato;
-	}
+	private String celular;
+	private String fixo;
 
 	public Long getIdFabricante() {
 		return idFabricante;
@@ -32,17 +23,25 @@ public class Fabricante {
 		this.nome = nome;
 	}
 
-	public String getContato() {
-		return contato;
+	public String getCelular() {
+		return celular;
 	}
 
-	public void setContato(String contato) {
-		this.contato = contato;
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
-	
+
+	public String getFixo() {
+		return fixo;
+	}
+
+	public void setFixo(String fixo) {
+		this.fixo = fixo;
+	}
+
 	@Override
 	public String toString() {
-		String saida = this.idFabricante + " - " + this.nome + " - " + this.contato;
+		String saida = this.idFabricante + " - " + this.nome + " - " + this.celular + " - " + this.fixo;
 		return saida;
 	}
 

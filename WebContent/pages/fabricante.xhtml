@@ -36,8 +36,12 @@
 					<h:outputText value="#{item.nome}" />
 				</p:column>
 
-				<p:column headerText="Contato" sortBy="#{item.contato}">
-					<h:outputText value="#{item.contato}" />
+				<p:column headerText="Celular" sortBy="#{item.celular}">
+					<h:outputText value="#{item.celular}" />
+				</p:column>
+				
+				<p:column headerText="Fixo" sortBy="#{item.fixo}">
+					<h:outputText value="#{item.fixo}" />
 				</p:column>
 
 				<p:column headerText="Opções" width="80">
@@ -76,10 +80,15 @@
 						value="#{MBFabricante.fabricante.nome}" required="true"
 						requiredMessage="O campo nome é obrigatório..." />
 
-					<p:outputLabel for="contato" value="Contato: " />
-					<p:inputMask id="contato" size="14" maxlength="14"
-						value="#{MBFabricante.fabricante.contato}" required="true"
+					<p:outputLabel for="celular" value="Celular: " />
+					<p:inputMask id="celular"
+						value="#{MBFabricante.fabricante.celular}" required="true"
 						mask="(99) 99999-9999"
+						requiredMessage="O campo celular é obrigatório..." />
+
+					<p:outputLabel for="fixo" value="Fixo: " />
+					<p:inputMask id="fixo" value="#{MBFabricante.fabricante.fixo}"
+						required="true" mask="(99) 99999-9999"
 						requiredMessage="O campo contato é obrigatório..." />
 				</h:panelGrid>
 				<h:panelGrid columns="2">
@@ -106,8 +115,11 @@
 					<h:outputLabel value="Nome:" />
 					<h:outputText value="#{MBFabricante.fabricante.nome}" />
 
-					<h:outputLabel value="Contato:" />
-					<h:outputText value="#{MBFabricante.fabricante.contato}" />
+					<h:outputLabel value="Celular:" />
+					<h:outputText value="#{MBFabricante.fabricante.celular}" />
+
+					<h:outputLabel value="Fixo:" />
+					<h:outputText value="#{MBFabricante.fabricante.fixo}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
@@ -132,12 +144,16 @@
 					<h:outputText value="#{MBFabricante.fabricante.idFabricante}" />
 
 					<h:outputLabel value="Nome:" />
-					<h:inputText value="#{MBFabricante.fabricante.nome}" size="30"
+					<p:inputText value="#{MBFabricante.fabricante.nome}" size="30"
 						maxlength="50" />
 
-					<h:outputLabel value="Contato:" />
-					<h:inputText value="#{MBFabricante.fabricante.contato}" size="30"
-						maxlength="50" />
+					<h:outputLabel for="celular" value="Celular:" />
+					<p:inputMask id="celular"
+						value="#{MBFabricante.fabricante.celular}" mask="(99) 99999-9999" />
+
+					<h:outputLabel for="fixo" value="Fixo:" />
+					<p:inputMask id="fixo" value="#{MBFabricante.fabricante.fixo}"
+						mask="(99) 99999-9999" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
