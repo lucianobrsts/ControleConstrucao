@@ -18,7 +18,7 @@
 	<ui:define name="conteudo">
 		<f:event listener="#{MBProduto.carregarListagem}" type="preRenderView" />
 
-		<h:form id="formProdutoListagem">
+		<h:form id="formProduto">
 			<p:dataTable id="tabelaProdutos" widgetVar="tabelaProdutoListagem"
 				emptyMessage="Nenhum produto encontrado..."
 				value="#{MBProduto.itens}" var="item" paginator="true" rows="10"
@@ -125,7 +125,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" actionListener="#{MBProduto.novo}"
 						oncomplete="PF('dialogProdutoNovo').hide(); tabelaProdutoListagem.clearFilters();"
-						update=":formProdutoListagem:tabelaProdutos :mensagemGlobal" />
+						update=":formProduto:tabelaProdutos :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
 						oncomplete="PF('dialogProdutoNovo').hide();" />
@@ -160,7 +160,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Excluir"
 						actionListener="#{MBProduto.excluir}"
-						update=":mensagemGlobal :formProdutoListagem:tabelaProdutos"
+						update=":mensagemGlobal :formProduto:tabelaProdutos"
 						oncomplete="PF('dialogProdutoExcluir').hide();  tabelaProdutoListagem.clearFilters();" />
 
 					<p:commandButton value="Cancelar" process="@this"
@@ -207,7 +207,7 @@
 					<p:commandButton value="Editar"
 						actionListener="#{MBProduto.editar}"
 						oncomplete="verificarCampos(xhr, status, args, 'dialogProdutoEditar', 'tabelaProdutos');"
-						update=":mensagemGlobal :formProdutoListagem:tabelaProdutos" />
+						update=":mensagemGlobal :formProduto:tabelaProdutos" />
 
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogProdutoEditar').hide();" />

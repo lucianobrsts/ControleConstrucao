@@ -14,14 +14,14 @@
 	<ui:define name="conteudo">
 		<f:event listener="#{MBUsuario.carregarListagem}" type="preRenderView" />
 
-		<h:form id="formUsuarioListagem">
+		<h:form id="formUsuario">
 			<p:dataTable id="tabelaUsuarios" widgetVar="tabelaUsuarioListagem"
 				emptyMessage="Nenhum Usuário encontrado..."
 				value="#{MBUsuario.itens}" var="item" paginator="true" rows="10"
 				filteredValue="#{MBUsuario.itensFiltrados}">
 
 				<f:facet name="header">
-					<h:outputText value="Usuario - Listagem" />
+					<h:outputText value="Usuario - Listagem"/>
 				</f:facet>
 
 				<p:column headerText="Id" style="text-align: center;"
@@ -95,7 +95,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" actionListener="#{MBUsuario.novo}"
 						oncomplete="('dialogUsuarioNovo'.hide();) tabelaUsuarioListagem.clearFilters();"
-						update=":formUsuarioListagem:tabelaUsuarios :mensagemGlobal" />
+						update=":formUsuario:tabelaUsuarios :mensagemGlobal" />
 						
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogUsuarioNovo').hide();">
@@ -130,7 +130,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Excluir"
 						actionListener="#{MBUsuario.excluir}"
-						update=":mensagemGlobal :formUsuarioListagem:tabelaUsuarios"
+						update=":mensagemGlobal :formUsuario:tabelaUsuarios"
 						oncomplete="PF('dialogUsuarioExcluir').hide();  tabelaUsuarioListagem.clearFilters();" />
 
 					<p:commandButton value="Cancelar" process="@this"
@@ -170,7 +170,7 @@
 					<p:commandButton value="Editar"
 						actionListener="#{MBUsuario.editar}"
 						oncomplete="verificarCampos(xhr, status, args, 'dialogUsuarioEditar', 'tabelaUsuarios');"
-						update=":mensagemGlobal :formUsuarioListagem:tabelaUsuarios" />
+						update=":mensagemGlobal :formUsuario:tabelaUsuarios" />
 
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogUsuarioEditar').hide();" />

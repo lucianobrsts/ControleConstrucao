@@ -63,7 +63,7 @@ public class UsuarioBean {
 
 			itens = dao.listar();
 
-			JSFUtil.adicionarMensagemSucesso("Usuario salvo com sucesso...");
+			JSFUtil.adicionarMensagemSucesso("Usuário salvo com sucesso...");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());

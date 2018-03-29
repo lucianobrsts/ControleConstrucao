@@ -3,10 +3,8 @@ package br.com.construcao.bean;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.model.ListDataModel;
 
 import br.com.construcao.dao.FabricanteDAO;
 import br.com.construcao.domain.Fabricante;
@@ -16,7 +14,8 @@ import br.com.construcao.util.JSFUtil;
 @ViewScoped
 public class FabricanteBean {
 	private Fabricante fabricante;
-	private ListDataModel<Fabricante> itens;
+	private ArrayList<Fabricante> itens;
+	private ArrayList<Fabricante> itensFiltrados;
 
 	public Fabricante getFabricante() {
 		return fabricante;
@@ -26,20 +25,26 @@ public class FabricanteBean {
 		this.fabricante = fabricante;
 	}
 
-	public ListDataModel<Fabricante> getItens() {
+	public ArrayList<Fabricante> getItensFiltrados() {
+		return itensFiltrados;
+	}
+
+	public void setItensFiltrados(ArrayList<Fabricante> itensFiltrados) {
+		this.itensFiltrados = itensFiltrados;
+	}
+
+	public ArrayList<Fabricante> getItens() {
 		return itens;
 	}
 
-	public void setItens(ListDataModel<Fabricante> itens) {
+	public void setItens(ArrayList<Fabricante> itens) {
 		this.itens = itens;
 	}
 
-	@PostConstruct
-	public void prepararPesquisa() {
+	public void carregarListagem() {
 		try {
 			FabricanteDAO dao = new FabricanteDAO();
-			ArrayList<Fabricante> lista = dao.listar();
-			itens = new ListDataModel<Fabricante>(lista);
+			itens = dao.listar();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
@@ -55,18 +60,13 @@ public class FabricanteBean {
 			FabricanteDAO dao = new FabricanteDAO();
 			dao.salvar(fabricante);
 
-			ArrayList<Fabricante> lista = dao.listar();
-			itens = new ListDataModel<Fabricante>(lista);
+			itens = dao.listar();
 
-			JSFUtil.adicionarMensagemSucesso("Fabricante salvo com sucesso...");
+			JSFUtil.adicionarMensagemSucesso("Produto salvo com sucesso...");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
 		}
-	}
-
-	public void prepararExcluir() {
-		fabricante = itens.getRowData();
 	}
 
 	public void excluir() {
@@ -74,9 +74,7 @@ public class FabricanteBean {
 			FabricanteDAO dao = new FabricanteDAO();
 			dao.excluir(fabricante);
 
-			ArrayList<Fabricante> lista = dao.listar();
-			itens = new ListDataModel<Fabricante>(lista);
-
+			itens = dao.listar();
 			JSFUtil.adicionarMensagemSucesso("Fabricante excluído com sucesso...");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,18 +83,12 @@ public class FabricanteBean {
 
 	}
 
-	public void prepararEditar() {
-		fabricante = itens.getRowData();
-	}
-
 	public void editar() {
 		try {
 			FabricanteDAO dao = new FabricanteDAO();
 			dao.editar(fabricante);
 
-			ArrayList<Fabricante> lista = dao.listar();
-			itens = new ListDataModel<Fabricante>(lista);
-
+			itens = dao.listar();
 			JSFUtil.adicionarMensagemSucesso("Fabricante editado com sucesso...");
 		} catch (SQLException e) {
 			e.printStackTrace();
