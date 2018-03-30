@@ -62,8 +62,8 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo"
-						oncomplete="PF('dialogFabricanteNovo').show();"
 						actionListener="#{MBFabricante.prepararNovo}"
+						oncomplete="PF('dialogFabricanteNovo').show();"
 						update=":formFabricanteNovo:panelFabricanteNovo :mensagemGlobal" />
 				</f:facet>
 			</p:dataTable>
@@ -94,7 +94,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar"
 						actionListener="#{MBFabricante.novo}"
-						oncomplete="PF('dialogFabricanteNovo').hide(); tabelaFabricanteListagem.clearFilters();"
+						oncomplete="PF('dialogFabricanteNovo').hide();"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
@@ -125,7 +125,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Excluir"
 						actionListener="#{MBFabricante.excluir}"
-						oncomplete="PF(dialogFabricanteExcluir').hide(); tabelaFabricantesListagem.clearFilters();"
+						oncomplete="PF(dialogFabricanteExcluir').hide();"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"

@@ -94,7 +94,7 @@
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" actionListener="#{MBUsuario.novo}"
-						oncomplete="PF('dialogUsuarioNovo').hide(); tabelaUsuarioListagem.clearFilters();"
+						oncomplete="PF('dialogUsuarioNovo').hide();"
 						update=":formUsuario:tabelaUsuarios :mensagemGlobal" />
 						
 					<p:commandButton value="Cancelar" process="@this"
@@ -131,7 +131,7 @@
 					<p:commandButton value="Excluir"
 						actionListener="#{MBUsuario.excluir}"
 						update=":mensagemGlobal :formUsuario:tabelaUsuarios"
-						oncomplete="PF('dialogUsuarioExcluir').hide();  tabelaUsuarioListagem.clearFilters();" />
+						oncomplete="PF('dialogUsuarioExcluir').hide();"/>
 
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogUsuarioExcluir').hide();" />

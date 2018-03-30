@@ -23,19 +23,18 @@
 					<h:inputSecret value="#{MBAutenticar.usuario.senha}"
 						required="true"
 						requiredMessage="A senha do usuário é obrigatória..." />
-						
-						<p:outputLabel for="radio" value="Tipo:" />
-						<p:selectOneRadio id="radio" value="#{MBAutenticar.usuario.tipo}">
-							<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-							<f:selectItem itemLabel="Vendedor" itemValue="Vendedor"/>
-						</p:selectOneRadio>
+
+					<p:outputLabel for="radio" value="Tipo:" />
+					<p:selectOneRadio id="radio" value="#{MBAutenticar.usuario.tipo}">
+						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
+					</p:selectOneRadio>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Entrar"
 						actionListener="#{MBAutenticar.autenticar}"
-						update=":mensagemGlobal :formLoginUsuario:panelLoginUsuario"
-						oncomplete="dialogLogin.cleanFilters();" />
+						update=":formLoginUsuario:panelLoginUsuario :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar"
 						onclick="PF('dialogLogin').hide();" />
