@@ -5,69 +5,87 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/templates/modeloSistema.xhtml">
+	template="/templates/modeloSistemaVendas.xhtml">
 
 	<ui:define name="menu">
 		<ui:include src="/includes/menuPrincipal.xhtml" />
 	</ui:define>
 
 	<ui:define name="conteudo">
-
 		<h:form id="formVendas">
-			<p:panel header="Produtos">
+
+			<p:fieldset legend="Dados Venda">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Código:" />
+					<h:inputText maxlength="10" size="10"/>
+
+					<h:outputLabel value="Data:" />
+					<p:calendar />
+
+					<h:outputLabel value="Vendedor:" />
+					<h:inputText />
+				</h:panelGrid>
+			</p:fieldset>
+
+			<br />
+
+			<p:fieldset legend="Produtos">
 				<p:dataTable id="tabelaProdutos"
 					emptyMessage="Nenhum produto encontrado..."
-					value="#{MBVendas.produtos}" var="produto" paginator="true"
-					rows="3">
+					value="#{MBVendas.produtos}" var="produto" scrollable="true"
+					scrollHeight="50%">
 
-					<p:column headerText="Nome" sortBy="#{produto.nome}"
-						filterBy="#{produto.nome}">
+					<p:column headerText="Nome" filterBy="#{produto.nome}">
 						<h:outputText value="#{produto.nome}" />
 					</p:column>
 
-					<p:column headerText="Quantidade" style="text-align: center;">
+					<p:column headerText="Quantidade" style="text-align: center;"
+						width="70">
 						<h:outputText value="#{produto.quantidade}" />
 					</p:column>
 
-					<p:column headerText="Valor" style="text-align: center;"
-						sortBy="#{produto.valor}" filterBy="#{produto.valor}">
+					<p:column headerText="Valor" style="text-align: center;" width="50">
 						<h:outputText value="#{produto.valor}" />
 					</p:column>
 
-					<p:column headerText="Fabricante"
-						sortBy="#{produto.fabricante.nome}"
-						filterBy="#{produto.fabricante.nome}">
+					<p:column headerText="Fabricante" width="200">
 						<h:outputText value="#{produto.fabricante.nome}" />
 					</p:column>
 
-					<p:column headerText="Opções" width="80">
+					<p:column headerText="Opções" width="60"
+						style="text-align: center;">
 						<p:commandButton icon=" ui-icon-plus" />
 					</p:column>
 				</p:dataTable>
-			</p:panel>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
 
-			<p:panel header="Itens de Compra">
+
+	<ui:define name="compras">
+		<h:form>
+			<p:fieldset legend="Compras">
 				<p:dataTable id="tabelaItens"
 					emptyMessage="Nenhum registro encontrado..."
-					value="#{MBVendas.itensVenda}" var="itemVenda" paginator="true"
-					rows="3">
+					value="#{MBVendas.itensVenda}" var="itemVenda" scrollable="true" scrollHeight="350">
 
 					<p:column headerText="Nome">
 						<h:outputText value="#{ItemVenda.produto.nome}" />
 					</p:column>
 
-					<p:column headerText="Preço Unitário" style="text-align: center;">
+					<p:column headerText="Preço Unitário" style="text-align: center;"
+						width="150">
 						<h:outputText value="#{itemVenda.produto.valor}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
 					</p:column>
 
 
-					<p:column headerText="Quantidade">
+					<p:column headerText="Quantidade" width="150">
 						<h:outputText value="#{itemVenda.quantidade}" />
 					</p:column>
 
-					<p:column headerText="Preço Parcial">
+					<p:column headerText="Preço Parcial" width="150">
 						<h:outputText value="#{itemVenda.precoParcial}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
@@ -77,17 +95,31 @@
 						<p:commandButton icon=" ui-icon-minus" />
 					</p:column>
 				</p:dataTable>
-			</p:panel>
+			</p:fieldset>
 
-			<p:panel header="Total">
-				<p:dataTable id="tabelaTotais"
-					emptyMessage="Nenhum produto encontrado..."
-					value="#{MBVendas.produtos}" var="produto">
+			<br />
 
+			<p:fieldset legend="Total da Venda">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Total Venda:" />
+					<h:inputText />
 
-				</p:dataTable>
-			</p:panel>
+					<h:outputLabel value="Desconto:" />
+					<h:inputText />
+
+					<h:outputLabel value="Total Geral:" />
+					<h:inputText />
+				</h:panelGrid>
+			</p:fieldset>
+			
+			<p:panelGrid columns="3">
+
+			<p:commandButton value="Fnalizar"/>
+			<p:commandButton value="Cancelar"/>
+			<p:commandButton value="Imprimir"/>
+			
+			</p:panelGrid>
+			
 		</h:form>
 	</ui:define>
-
 </ui:composition>
