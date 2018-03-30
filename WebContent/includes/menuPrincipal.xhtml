@@ -28,7 +28,7 @@
 			</p:submenu>
 
 
-			<p:submenu label="Relatório">
+			<p:submenu label="Ajuda">
 				<p:menuitem value="Sobre" outcome="/pages/sobre.xhtml" />
 			</p:submenu>
 
@@ -38,13 +38,10 @@
 					style="margin-right:20px;" />
 
 				<p:commandLink action="/pages/login.xhtml">
-					<p:commandButton type="button" value="Login"
-						icon="ui-icon-circle-check" />
+					<p:commandButton type="button" value="Logout"
+						icon="ui-icon-circle-close" actionListener="#{MBAutenticar.sair}"
+						ajax="false" />
 				</p:commandLink>
-
-				<p:commandButton type="button" value="Logout"
-					icon="ui-icon-circle-close" actionListener="#{MBAutenticar.sair}"
-					action="/login.xhtml?faces-redirect=true" ajax="false" />
 			</f:facet>
 		</p:menubar>
 	</h:form>

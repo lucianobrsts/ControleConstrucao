@@ -73,7 +73,7 @@ public class AutenticacaoBean {
 	}
 
 	public void sair() {
-
+		usuarioLogado = null;
 	}
 
 }
