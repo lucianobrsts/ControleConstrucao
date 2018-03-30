@@ -32,17 +32,15 @@
 				<p:menuitem value="Sobre" outcome="/pages/sobre.xhtml" />
 			</p:submenu>
 
-			<p:menuitem icon="ui-icon-person" value="Login"
-				outcome="/pages/login.xhtml" />
-
 			<f:facet name="options">
 				<p:outputLabel value="Olá: " />
 				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}"
 					style="margin-right:20px;" />
 
-				<p:commandButton type="button" value="Login"
-					action="/pages/login.xhtml?faces-redirect=true" ajax="true"
-					icon="ui-icon-circle-check" />
+				<p:commandLink action="/pages/login.xhtml">
+					<p:commandButton type="button" value="Login"
+						icon="ui-icon-circle-check" />
+				</p:commandLink>
 
 				<p:commandButton type="button" value="Logout"
 					icon="ui-icon-circle-close" actionListener="#{MBAutenticar.sair}"
