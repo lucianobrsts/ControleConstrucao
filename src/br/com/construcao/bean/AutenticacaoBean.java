@@ -49,7 +49,7 @@ public class AutenticacaoBean {
 			usuarioLogado = dao.autenticar(usuario.getNome(), usuario.getSenha(), usuario.getTipo());
 
 			if (usuarioLogado == null) {
-				Messages.addGlobalError("Usuário e/ou senha incorretos!");
+				Messages.addGlobalError("Usuário, senha ou tipo incorretos!");
 				return;
 			}
 
