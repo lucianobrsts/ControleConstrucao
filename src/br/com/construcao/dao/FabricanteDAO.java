@@ -87,7 +87,7 @@ public class FabricanteDAO {
 
 	public ArrayList<Fabricante> listar() throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * ");
+		sql.append("SELECT idfabricante, nome, celular, fixo ");
 		sql.append("FROM fabricante ");
 		sql.append("ORDER BY nome ASC ");
 
@@ -114,7 +114,7 @@ public class FabricanteDAO {
 
 	public ArrayList<Fabricante> buscarPorNome(Fabricante f) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * ");
+		sql.append("SELECT idfabricante, nome, celular, fixo ");
 		sql.append("FROM fabricante ");
 		sql.append("WHERE nome LIKE ? ");
 		sql.append("ORDER BY nome ASC ");

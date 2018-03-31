@@ -61,7 +61,7 @@ public class FabricanteBean {
 			dao.salvar(fabricante);
 
 			itens = dao.listar();
-
+			
 			JSFUtil.adicionarMensagemSucesso("Produto salvo com sucesso...");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,6 +75,7 @@ public class FabricanteBean {
 			dao.excluir(fabricante);
 
 			itens = dao.listar();
+			
 			JSFUtil.adicionarMensagemSucesso("Fabricante excluído com sucesso...");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,6 +90,7 @@ public class FabricanteBean {
 			dao.editar(fabricante);
 
 			itens = dao.listar();
+			
 			JSFUtil.adicionarMensagemSucesso("Fabricante editado com sucesso...");
 		} catch (SQLException e) {
 			e.printStackTrace();
