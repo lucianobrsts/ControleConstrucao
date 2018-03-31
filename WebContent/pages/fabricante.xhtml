@@ -39,7 +39,7 @@
 				<p:column headerText="Celular" sortBy="#{item.celular}">
 					<h:outputText value="#{item.celular}" />
 				</p:column>
-				
+
 				<p:column headerText="Fixo" sortBy="#{item.fixo}">
 					<h:outputText value="#{item.fixo}" />
 				</p:column>
@@ -94,7 +94,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar"
 						actionListener="#{MBFabricante.novo}"
-						oncomplete="PF('dialogFabricanteNovo').hide();"
+						oncomplete="verificaCampo(xhr, status, args, dialogFabricanteNovo, tabelaFabricanteListagem)"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
@@ -161,14 +161,11 @@
 						actionListener="#{MBFabricante.editar}"
 						oncomplete="PF('dialogFabricanteEditar').hide();"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
-					
+
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogFabricanteEditar').hide();" />
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
-
 	</ui:define>
-
-
 </ui:composition>

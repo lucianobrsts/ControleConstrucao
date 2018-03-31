@@ -97,14 +97,20 @@
 					<p:inputText id="textoQuantidadeProdutoNovo"
 						value="#{MBProduto.produto.quantidade}" size="30" maxlength="50"
 						required="true"
-						requiredMessage="O campo quantidade é obrigatório..." />
+						requiredMessage="O campo quantidade é obrigatório..."
+						converterMessage="Informe um valor válido para o campo quantidade">
+
+						<f:convertNumber />
+					</p:inputText>
 
 					<p:outputLabel for="textoValorProdutoNovo" value="Valor:" />
 					<p:inputText id="textoValorProdutoNovo"
 						value="#{MBProduto.produto.valor}" required="true"
-						requiredMessage="O campo valor é obrigatório..." converterMessage="Informe um valor válido para o campo Valor.">
-							<f:convertNumber />
-						</p:inputText>
+						requiredMessage="O campo valor é obrigatório..."
+						converterMessage="Informe um valor válido para o campo Valor.">
+
+						<f:convertNumber />
+					</p:inputText>
 
 					<p:outputLabel value="Fabricante:" />
 					<p:selectOneMenu
@@ -114,13 +120,14 @@
 							itemValue="#{item.idFabricante}" itemLabel="#{item.nome}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel for="foto" value="Imagem:" />
-					<p:fileUpload id="foto" mode="advanced"
+					<p:outputLabel value="Imagem:" />
+					<p:fileUpload mode="advanced"
 						fileUploadListener="#{MBProduto.upload}"
-						update=":mensagemGlobal :formProdutoNovo:panelProdutoNovo" auto="true" />
+						update=":mensagemGlobal :formProdutoNovo:panelProdutoNovo"
+						auto="true" />
 
-					<p:outputLabel for="fotos" value="Foto:" />
-					<p:graphicImage id="fotos" value="#{MBImagem.foto}">
+					<p:outputLabel value="Foto:" />
+					<p:graphicImage value="#{MBImagem.foto}">
 						<f:param name="caminho" value="#{MBProduto.produto.caminho}" />
 					</p:graphicImage>
 

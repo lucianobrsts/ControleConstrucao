@@ -17,7 +17,7 @@
 			<p:fieldset legend="Dados Venda">
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Código:" />
-					<h:inputText maxlength="10" size="10"/>
+					<h:inputText maxlength="10" size="10" />
 
 					<h:outputLabel value="Data:" />
 					<p:calendar />
@@ -45,10 +45,12 @@
 					</p:column>
 
 					<p:column headerText="Valor" style="text-align: center;" width="50">
-						<h:outputText value="#{produto.valor}" />
+						<h:outputText value="#{produto.valor}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Fabricante" width="200">
+					<p:column headerText="Fabricante" width="170">
 						<h:outputText value="#{produto.fabricante.nome}" />
 					</p:column>
 
@@ -67,25 +69,25 @@
 			<p:fieldset legend="Compras">
 				<p:dataTable id="tabelaItens"
 					emptyMessage="Nenhum registro encontrado..."
-					value="#{MBVendas.itensVenda}" var="itemVenda" scrollable="true" scrollHeight="350">
+					value="#{MBVendas.itensVenda}" var="itemVenda" scrollable="true"
+					scrollHeight="350">
 
 					<p:column headerText="Nome">
 						<h:outputText value="#{ItemVenda.produto.nome}" />
 					</p:column>
 
+					<p:column headerText="Quantidade" width="80">
+						<h:outputText value="#{itemVenda.quantidade}" />
+					</p:column>
+
 					<p:column headerText="Preço Unitário" style="text-align: center;"
-						width="150">
+						width="100">
 						<h:outputText value="#{itemVenda.produto.valor}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
 					</p:column>
 
-
-					<p:column headerText="Quantidade" width="150">
-						<h:outputText value="#{itemVenda.quantidade}" />
-					</p:column>
-
-					<p:column headerText="Preço Parcial" width="150">
+					<p:column headerText="Preço Parcial" width="80">
 						<h:outputText value="#{itemVenda.precoParcial}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
@@ -111,15 +113,15 @@
 					<h:inputText />
 				</h:panelGrid>
 			</p:fieldset>
-			
+
 			<p:panelGrid columns="3">
 
-			<p:commandButton value="Fnalizar"/>
-			<p:commandButton value="Cancelar"/>
-			<p:commandButton value="Imprimir"/>
-			
+				<p:commandButton value="Fnalizar" />
+				<p:commandButton value="Cancelar" />
+				<p:commandButton value="Imprimir" />
+
 			</p:panelGrid>
-			
+
 		</h:form>
 	</ui:define>
 </ui:composition>
