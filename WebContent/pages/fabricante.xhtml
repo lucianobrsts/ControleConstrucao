@@ -94,7 +94,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar"
 						actionListener="#{MBFabricante.novo}"
-						oncomplete="verificaCampo(xhr, status, args, dialogFabricanteNovo, tabelaFabricanteListagem)"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogFabricanteNovo')"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
