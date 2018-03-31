@@ -94,7 +94,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar"
 						actionListener="#{MBFabricante.novo}"
-						oncomplete="verificaCampo(xhr, status, args, 'dialogFabricanteNovo')"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogFabricanteNovo', 'tabelaFabricanteListagem')"
 						update=":formFabricante:tabelaFabricantes :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
@@ -167,5 +167,19 @@
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
+
+		<script>
+			function verificaCampo(xhr, status, args, dlg, tbl) {
+				if (args.validationFailed) {
+					PF(dlg).jq.effect("shake", {
+						times : 5
+					}, 100);
+				} else {
+					PF(dlg).hide();
+					PF(tbl).clearFilters();
+				}
+			}
+		</script>
+	
 	</ui:define>
 </ui:composition>

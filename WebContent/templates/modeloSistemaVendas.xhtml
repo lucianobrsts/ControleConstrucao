@@ -10,13 +10,11 @@
 	<title>Controle Construção</title>
 	<h:outputStylesheet library="css" name="estilos.css" />
 	<h:outputScript library="js" name="scripts.js" />
-	<link
-		href="#{facesContext.externalContext.requestContextPath}/resources/css/estilos.css"
-		rel="stylesheet" type="text/css" />
+
 </h:head>
 <h:body>
 	<p:growl id="mensagemGlobal" life="5000" />
-	
+
 	<p:layout fullPage="true">
 		<p:layoutUnit position="north">
 			<ui:insert name="menu" />
@@ -25,7 +23,7 @@
 		<p:layoutUnit position="center">
 			<ui:insert name="conteudo" />
 		</p:layoutUnit>
-		
+
 		<p:layoutUnit position="east" size="50%">
 			<ui:insert name="compras" />
 		</p:layoutUnit>

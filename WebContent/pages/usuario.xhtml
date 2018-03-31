@@ -21,7 +21,7 @@
 				filteredValue="#{MBUsuario.itensFiltrados}">
 
 				<f:facet name="header">
-					<h:outputText value="Usuario - Listagem"/>
+					<h:outputText value="Usuario - Listagem" />
 				</f:facet>
 
 				<p:column headerText="Id" style="text-align: center;"
@@ -37,7 +37,7 @@
 				<p:column headerText="Senha" style="text-align: center;">
 					<h:outputText value="#{item.senha}" />
 				</p:column>
-				
+
 				<p:column headerText="Tipo">
 					<h:outputText value="#{item.tipo}" />
 				</p:column>
@@ -70,9 +70,9 @@
 		</h:form>
 
 		<!-- Tela novo Usuario -->
-		<p:dialog widgetVar="dialogUsuarioNovo" closable="false"
-			resizable="false" draggable="false" appendTo="@(body)" modal="true"
-			header="Usuário - Novo">
+			<p:dialog widgetVar="dialogUsuarioNovo" closable="false"
+				resizable="false" draggable="false" appendTo="@(body)" modal="true"
+				header="Usuário - Novo">
 			<h:form id="formUsuarioNovo">
 				<h:panelGrid columns="2" id="panelUsuarioNovo">
 					<p:outputLabel for="textoNomeUsuarioNovo" value="Nome:" />
@@ -84,32 +84,30 @@
 					<p:password id="textoSenhaUsuarioNovo"
 						value="#{MBUsuario.usuario.senha}" size="30" maxlength="50"
 						required="true" requiredMessage="O campo senha é obrigatório..." />
-						
-						<p:outputLabel for="radio" value="Tipo:" />
-						<p:selectOneRadio id="radio" value="#{MBUsuario.usuario.tipo}">
-							<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-							<f:selectItem itemLabel="Vendedor" itemValue="Vendedor"/>
-						</p:selectOneRadio>
+
+					<p:outputLabel for="radio" value="Tipo:" />
+					<p:selectOneRadio id="radio" value="#{MBUsuario.usuario.tipo}"
+						required="true" requiredMessage="Selecionar o tipo é obrigatório.">
+						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
+					</p:selectOneRadio>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" actionListener="#{MBUsuario.novo}"
-						oncomplete="PF('dialogUsuarioNovo').hide();"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioNovo', 'tabelaUsuarioListagem')"
 						update=":formUsuario:tabelaUsuarios :mensagemGlobal" />
-						
+
 					<p:commandButton value="Cancelar" process="@this"
-						onclick="PF('dialogUsuarioNovo').hide();">
-						
-						<p:resetInput target="panelUsuarioNovo" />
-						</p:commandButton>
+						onclick="PF('dialogUsuarioNovo').hide();" />
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
 
 		<!-- Tela excluir Usuário -->
-		<p:dialog closable="false" resizable="false" draggable="false"
-			appendTo="@(body)" modal="true" header="Usuario - Excluir"
-			widgetVar="dialogUsuarioExcluir">
+			<p:dialog closable="false" resizable="false" draggable="false"
+				appendTo="@(body)" modal="true" header="Usuario - Excluir"
+				widgetVar="dialogUsuarioExcluir">
 			<h:form id="formUsuarioExcluir">
 				<h:panelGrid columns="2" id="panelUsuarioExcluir">
 
@@ -121,7 +119,7 @@
 
 					<p:outputLabel value="Senha:" />
 					<h:outputText value="#{MBUsuario.usuario.senha}" />
-					
+
 					<p:outputLabel value="Tipo:" />
 					<h:outputText value="#{MBUsuario.usuario.tipo}" />
 
@@ -130,8 +128,8 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Excluir"
 						actionListener="#{MBUsuario.excluir}"
-						update=":mensagemGlobal :formUsuario:tabelaUsuarios"
-						oncomplete="PF('dialogUsuarioExcluir').hide();"/>
+						update=":formUsuario:tabelaUsuarios :mensagemGlobal"
+						oncomplete="PF('dialogUsuarioExcluir').hide();" />
 
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogUsuarioExcluir').hide();" />
@@ -140,16 +138,16 @@
 		</p:dialog>
 
 		<!-- Tela Editar Usuário -->
-		<p:dialog closable="false" resizable="false" draggable="false"
-			appendTo="@(body)" modal="true" header="Usuário - Editar"
-			widgetVar="dialogUsuarioEditar">
+			<p:dialog closable="false" resizable="false" draggable="false"
+				appendTo="@(body)" modal="true" header="Usuário - Editar"
+				widgetVar="dialogUsuarioEditar">
 			<h:form id="formUsuarioEditar">
 				<h:panelGrid columns="2" id="panelUsuarioEditar">
 					<p:outputLabel value="Id" />
 					<h:outputText value="#{MBUsuario.usuario.idUsuario}" />
 
-					<p:outputLabel for="textoNomeUsuarioNovo" value="Nome:" />
-					<h:inputText id="textoNomeUsuarioNovo"
+					<p:outputLabel for="textoNomeUsuarioEditar" value="Nome:" />
+					<h:inputText id="textoNomeUsuarioEditar"
 						value="#{MBUsuario.usuario.nome}" maxlength="50" size="30"
 						required="true" requiredMessage="O campo nome é obrigatório..." />
 
@@ -157,12 +155,12 @@
 					<h:inputText id="TextoSenhaUsuarioNovo"
 						value="#{MBUsuario.usuario.senha}" size="10" required="true"
 						requiredMessage="O campo Senha é obrigatório..." />
-						
-						<p:outputLabel for="radio" value="Tipo:" />
-						<p:selectOneRadio id="radio" value="#{MBUsuario.usuario.tipo}">
-							<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-							<f:selectItem itemLabel="Vendedor" itemValue="Vendedor"/>
-						</p:selectOneRadio>
+
+					<p:outputLabel value="Tipo:" />
+					<p:selectOneRadio value="#{MBUsuario.usuario.tipo}">
+						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
+					</p:selectOneRadio>
 
 				</h:panelGrid>
 
@@ -170,12 +168,26 @@
 					<p:commandButton value="Editar"
 						actionListener="#{MBUsuario.editar}"
 						oncomplete="PF('dialogUsuarioEditar').hide();"
-						update=":formUsuario:tabelaUsuarios :mensagemGlobal"/>
+						update=":formUsuario:tabelaUsuarios :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogUsuarioEditar').hide();" />
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
+
+		<script>
+			function verificaCampo(xhr, status, args, dlg, tbl) {
+				if (args.validationFailed) {
+					PF(dlg).jq.effect("shake", {
+						times : 5
+					}, 100);
+				} else {
+					PF(dlg).hide();
+					PF(tbl).clearFilters();
+				}
+			}
+		</script>
+
 	</ui:define>
 </ui:composition>
