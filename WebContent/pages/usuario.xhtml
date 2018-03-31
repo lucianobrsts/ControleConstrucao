@@ -129,7 +129,7 @@
 					<p:commandButton value="Excluir"
 						actionListener="#{MBUsuario.excluir}"
 						update=":formUsuario:tabelaUsuarios :mensagemGlobal"
-						oncomplete="PF('dialogUsuarioExcluir').hide();" />
+						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioExcluir', 'tabelaUsuarioListagem')" />
 
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogUsuarioExcluir').hide();" />
@@ -167,7 +167,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Editar"
 						actionListener="#{MBUsuario.editar}"
-						oncomplete="PF('dialogUsuarioEditar').hide();"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioEditar', 'tabelaUsuarioListagem')"
 						update=":formUsuario:tabelaUsuarios :mensagemGlobal" />
 
 					<p:commandButton value="Cancelar" process="@this"
