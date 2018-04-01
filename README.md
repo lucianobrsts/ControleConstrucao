@@ -1,7 +1,6 @@
 
-# Controle Construção
-
-Esse arquivo descreve características e funcionalidades do Projeto Constrole Construção.
+# Controle Construtor
+Esse arquivo descreve características e funcionalidades do Projeto Constrole Construtor.
 
 ## Tecnologias utilizadas:
 
@@ -18,4 +17,5 @@ Esse arquivo descreve características e funcionalidades do Projeto Constrole Co
 - Git
 - Junit
 - Primefaces
+- Jasper Report
 - MySQL
