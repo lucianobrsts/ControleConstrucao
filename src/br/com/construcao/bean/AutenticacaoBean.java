@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -73,7 +74,7 @@ public class AutenticacaoBean {
 	}
 
 	public void sair() {
-		usuarioLogado = null;
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MBAutenticar");
 	}
 
 }

@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/modeloSistema.xhtml">
-	
+
 	<ui:define name="conteudo">
 
 		<p:dialog widgetVar="dialogLogin" closable="false" draggable="false"
@@ -35,7 +35,7 @@
 					<p:commandButton value="Entrar"
 						actionListener="#{MBAutenticar.autenticar}"
 						update=":formLoginUsuario:panelLoginUsuario :mensagemGlobal" />
-						
+
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>

@@ -172,7 +172,7 @@
 					<p:commandButton value="Excluir"
 						actionListener="#{MBProduto.excluir}"
 						update=":mensagemGlobal :formProduto:tabelaProdutos"
-						oncomplete="PF('dialogProdutoExcluir').hide();" />
+						oncomplete="verificaCampo(xhr, status, args, 'dialogProdutoExcluir', 'tabelaProdutoListagem')" />
 
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dialogProdutoExcluir').hide();" />
@@ -217,7 +217,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Editar"
 						actionListener="#{MBProduto.editar}"
-						oncomplete="'dialogProdutoEditar'.hide();"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogProdutoEditar', 'tabelaProdutoListagem')"
 						update=":mensagemGlobal :formProduto:tabelaProdutos" />
 
 					<p:commandButton value="Cancelar" process="@this"
