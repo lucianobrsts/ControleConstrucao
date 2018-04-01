@@ -118,7 +118,7 @@ ORDER BY controleconstrutor.produto.nome ASC,
 				<reportElement x="260" y="1" width="120" height="30" uuid="f3538160-71e2-4f1d-95a8-465954a21ee5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="69bf6f4e-1fb8-4f23-ada2-7c386e6f5a5b"/>
 				</reportElement>
-				<textElement textAlignment="Center" markup="">
+				<textElement textAlignment="Center" markup="none">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
