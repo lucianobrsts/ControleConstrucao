@@ -16,7 +16,7 @@ public class ProdutoDAO {
 		StringBuilder sql = new StringBuilder();
 
 		sql.append("INSERT INTO produto ");
-		sql.append("(nome, quantidade, valor, idfabricante) ");
+		sql.append("(nome, quantidade, valor, fabricante_idfabricante) ");
 		sql.append("VALUES (?, ?, ?, ?) ");
 
 		Connection conexao = ConexaoFactory.conectar();
@@ -35,7 +35,7 @@ public class ProdutoDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT p.idproduto, p.nome, p.valor, p.quantidade, f.idfabricante, f.nome ");
 		sql.append("FROM produto p ");
-		sql.append("INNER JOIN fabricante f ON f.idfabricante = p.idfabricante ");
+		sql.append("INNER JOIN fabricante f ON f.idfabricante = p.fabricante_idfabricante ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -80,7 +80,7 @@ public class ProdutoDAO {
 	public void editar(Produto p) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE produto ");
-		sql.append("SET nome = ?, valor = ?, quantidade = ?, idfabricante = ? ");
+		sql.append("SET nome = ?, valor = ?, quantidade = ?, fabricante_idfabricante = ? ");
 		sql.append("WHERE idproduto = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
