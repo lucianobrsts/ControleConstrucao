@@ -28,29 +28,29 @@
 					<h:outputText value="Produto - Listagem" />
 				</f:facet>
 
-				<p:column headerText="Id" style="text-align: center;"
+				<p:column headerText="Id" style="text-align: center;" width="90"
 					sortBy="#{item.idProduto}" filterBy="#{item.idProduto}">
 					<h:outputText value="#{item.idProduto}" />
 				</p:column>
 
-				<p:column headerText="Nome" sortBy="#{item.nome}"
+				<p:column headerText="Nome" sortBy="#{item.nome}" width="200"
 					filterBy="#{item.nome}">
 					<h:outputText value="#{item.nome}" />
 				</p:column>
 
-				<p:column headerText="Quantidade" style="text-align: center;"
+				<p:column headerText="Quantidade" style="text-align: center;" width="90"
 					sortBy="#{item.quantidade}">
 					<h:outputText value="#{item.quantidade}" />
 				</p:column>
 
-				<p:column headerText="Valor" style="text-align: center;"
+				<p:column headerText="Valor" style="text-align: center;" width="80"
 					sortBy="#{item.valor}">
 					<h:outputText value="#{item.valor}">
 						<f:convertNumber pattern="0.00" />
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Fabricante" sortBy="#{item.fabricante.nome}"
+				<p:column headerText="Fabricante" sortBy="#{item.fabricante.nome}" width="160"
 					filterBy="#{item.fabricante.nome}">
 					<h:outputText value="#{item.fabricante.nome}" />
 				</p:column>
@@ -225,8 +225,8 @@
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
-		
-		
+
+
 		<script>
 			function verificaCampo(xhr, status, args, dlg, tbl) {
 				if (args.validationFailed) {
@@ -239,7 +239,7 @@
 				}
 			}
 		</script>
-		
-		
+
+
 	</ui:define>
 </ui:composition>
