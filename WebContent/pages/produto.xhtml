@@ -38,8 +38,8 @@
 					<h:outputText value="#{item.nome}" />
 				</p:column>
 
-				<p:column headerText="Quantidade" style="text-align: center;" width="90"
-					sortBy="#{item.quantidade}">
+				<p:column headerText="Quantidade" style="text-align: center;"
+					width="90" sortBy="#{item.quantidade}">
 					<h:outputText value="#{item.quantidade}" />
 				</p:column>
 
@@ -50,8 +50,8 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Fabricante" sortBy="#{item.fabricante.nome}" width="160"
-					filterBy="#{item.fabricante.nome}">
+				<p:column headerText="Fabricante" sortBy="#{item.fabricante.nome}"
+					width="160" filterBy="#{item.fabricante.nome}">
 					<h:outputText value="#{item.fabricante.nome}" />
 				</p:column>
 
@@ -98,18 +98,22 @@
 						value="#{MBProduto.produto.quantidade}" size="30" maxlength="50"
 						required="true"
 						requiredMessage="O campo quantidade é obrigatório..."
-						converterMessage="Informe um valor válido para o campo quantidade">
+						converterMessage="Informe um valor válido para o campo quantidade"
+						validatorMessage="Informe um valor enter 0 e 99 para o campo quantidade.">
 
 						<f:convertNumber />
+						<f:validateLongRange minimum="0" maximum="99" />
 					</p:inputText>
 
 					<p:outputLabel for="textoValorProdutoNovo" value="Valor:" />
 					<p:inputText id="textoValorProdutoNovo"
 						value="#{MBProduto.produto.valor}" required="true"
 						requiredMessage="O campo valor é obrigatório..."
-						converterMessage="Informe um valor válido para o campo Valor.">
+						converterMessage="Informe um valor válido para o campo Valor."
+						validatorMessage="Informe um valor acima de 0,01 centavo para o campo valor.">
 
-						<f:convertNumber />
+						<f:convertNumber pattern="0.00" />
+						<f:validateDoubleRange minimum="0.00" maximum="9999.99" />
 					</p:inputText>
 
 					<p:outputLabel value="Fabricante:" />
@@ -197,12 +201,22 @@
 					<p:outputLabel for="TextoQuantidadeProdutoNovo" value="Quantidade:" />
 					<h:inputText id="TextoQuantidadeProdutoNovo"
 						value="#{MBProduto.produto.quantidade}" size="10" required="true"
-						requiredMessage="O campo Quantidade é obrigatório..." />
+						requiredMessage="O campo Quantidade é obrigatório..."
+						validatorMessage="Informe um valor válido entre 0 e 99.">
+
+						<f:convertNumber pattern="0.00" />
+						<f:validateLongRange minimum="0" maximum="99" />
+					</h:inputText>
 
 					<p:outputLabel for="TextoValorProdutoNovo" value="Valor:" />
 					<h:inputText id="TextoValorProdutoNovo"
 						value="#{MBProduto.produto.valor}" size="10" required="true"
-						requiredMessage="O campo valor é obrigatório..." />
+						requiredMessage="O campo valor é obrigatório..."
+						validatorMessage="Informe um valor valor acima de 0,01 centavo para o campo valor.">
+
+						<f:convertNumber pattern="0.00" />
+						<f:validateDoubleRange minimum="0" />
+					</h:inputText>
 
 					<p:outputLabel value="Fabricante:" />
 					<p:selectOneMenu
