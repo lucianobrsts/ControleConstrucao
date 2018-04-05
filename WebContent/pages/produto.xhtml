@@ -116,19 +116,18 @@
 						<f:validateDoubleRange minimum="0.00" maximum="9999.99" />
 					</p:inputText>
 
-					<p:outputLabel value="Fabricante:" />
-					<p:selectOneMenu
+					<p:outputLabel for="fabricanteNovo" value="Fabricante:" />
+					<p:selectOneMenu id="fabricanteNovo"
 						value="#{MBProduto.produto.fabricante.idFabricante}" filter="true">
 						<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
 						<f:selectItems value="#{MBProduto.comboFabricantes}" var="item"
 							itemValue="#{item.idFabricante}" itemLabel="#{item.nome}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Imagem:" />
-					<p:fileUpload mode="advanced"
+					<p:outputLabel for="fotoNovo" value="Imagem:" />
+					<p:fileUpload id="fotoNovo" mode="advanced"
 						fileUploadListener="#{MBProduto.upload}"
-						update=":mensagemGlobal :formProdutoNovo:panelProdutoNovo"
-						auto="true" />
+						update=":mensagemGlobal :formProdutoNovo:panelProdutoNovo" auto="true"/>
 
 					<p:outputLabel value="Foto:" />
 					<p:graphicImage value="#{MBImagem.foto}">

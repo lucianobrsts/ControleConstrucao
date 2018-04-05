@@ -161,7 +161,7 @@ public class ProdutoBean {
 	}
 
 	public void upload(FileUploadEvent evento) {
-
+		/*
 		try {
 			UploadedFile arquivoUpload = evento.getFile();
 
@@ -174,6 +174,10 @@ public class ProdutoBean {
 		} catch (IOException e) {
 			JSFUtil.adicionarMensagemErro("Aconteceu um erro ao realizar o upload do arquivo.");
 			e.printStackTrace();
-		}
+		}*/
+	}
+	
+	public void imprimir() {
+		
 	}
 }
