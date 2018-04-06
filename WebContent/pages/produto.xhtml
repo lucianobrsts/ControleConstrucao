@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/templates/modeloSistemaFoto.xhtml">
+	template="/templates/modeloSistema.xhtml">
 
 	<ui:define name="menu">
 		<ui:include src="/includes/menuPrincipal.xhtml" />
@@ -86,7 +86,8 @@
 		<p:dialog widgetVar="dialogProdutoNovo" closable="false"
 			resizable="false" draggable="true" appendTo="@(body)" modal="true"
 			header="Produto - Novo">
-			<h:form id="formProdutoNovo" enctype="multipart/form-data">
+
+			<h:form id="formProdutoNovo"  enctype="multipart/form-data">
 				<h:panelGrid columns="2" id="panelProdutoNovo">
 					<p:outputLabel for="textoNomeProdutoNovo" value="Nome:" />
 					<p:inputText id="textoNomeProdutoNovo"
@@ -124,27 +125,17 @@
 							itemValue="#{item.idFabricante}" itemLabel="#{item.nome}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel for="fotoNovo" value="Imagem:" />
-					<p:fileUpload id="fotoNovo" mode="advanced"
-						fileUploadListener="#{MBProduto.upload}"
-						update=":mensagemGlobal :formProdutoNovo:panelProdutoNovo" auto="true"/>
-
-					<p:outputLabel value="Foto:" />
-					<p:graphicImage value="#{MBImagem.foto}">
-						<f:param name="caminho" value="#{MBProduto.produto.caminho}" />
-					</p:graphicImage>
-
 				</h:panelGrid>
-
 				<h:panelGrid columns="2">
-					<p:commandButton value="Gravar" actionListener="#{MBProduto.novo}"
+					<h:commandButton value="Gravar" actionListener="#{MBProduto.novo}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogProdutoNovo', 'tabelaProdutoListagem')"
 						update=":formProduto:tabelaProdutos :mensagemGlobal" />
 
-					<p:commandButton value="Cancelar" process="@this"
+					<h:commandButton value="Cancelar" process="@this"
 						oncomplete="PF('dialogProdutoNovo').hide();" />
 				</h:panelGrid>
 			</h:form>
+
 		</p:dialog>
 
 		<!-- Tela excluir produto -->

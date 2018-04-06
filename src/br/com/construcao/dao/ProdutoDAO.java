@@ -12,7 +12,7 @@ import br.com.construcao.factory.ConexaoFactory;
 
 public class ProdutoDAO {
 
-	public void salvar(Produto p) throws SQLException {
+	public void salvar(Produto produto) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 
 		sql.append("INSERT INTO produto ");
@@ -22,13 +22,13 @@ public class ProdutoDAO {
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
-		comando.setString(1, p.getNome());
-		comando.setLong(2, p.getQuantidade());
-		comando.setDouble(3, p.getValor());
-		comando.setLong(4, p.getFabricante().getIdFabricante());
+		comando.setString(1, produto.getNome());
+		comando.setLong(2, produto.getQuantidade());
+		comando.setDouble(3, produto.getValor());
+		comando.setLong(4, produto.getFabricante().getIdFabricante());
 
 		comando.executeUpdate();
-
+		
 	}
 
 	public ArrayList<Produto> listar() throws SQLException {
