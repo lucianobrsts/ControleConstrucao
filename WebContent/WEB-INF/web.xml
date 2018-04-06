@@ -29,7 +29,7 @@
 	<!-- Definição tema JSF -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>home</param-value>
+		<param-value>aristo</param-value>
 	</context-param>
 
 	<!-- Localização do faces-config -->
