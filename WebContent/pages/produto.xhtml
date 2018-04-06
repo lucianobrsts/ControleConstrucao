@@ -87,7 +87,7 @@
 			resizable="false" draggable="true" appendTo="@(body)" modal="true"
 			header="Produto - Novo">
 
-			<h:form id="formProdutoNovo"  enctype="multipart/form-data">
+			<h:form id="formProdutoNovo">
 				<h:panelGrid columns="2" id="panelProdutoNovo">
 					<p:outputLabel for="textoNomeProdutoNovo" value="Nome:" />
 					<p:inputText id="textoNomeProdutoNovo"
@@ -127,11 +127,11 @@
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<h:commandButton value="Gravar" actionListener="#{MBProduto.novo}"
-						oncomplete="verificaCampo(xhr, status, args, 'dialogProdutoNovo', 'tabelaProdutoListagem')"
-						update=":formProduto:tabelaProdutos :mensagemGlobal" />
+					<p:commandButton value="Gravar" actionListener="#{MBProduto.novo}"
+						update=":formProduto:tabelaProdutos :mensagemGlobal"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogProdutoNovo', 'tabelaProdutoListagem')" />
 
-					<h:commandButton value="Cancelar" process="@this"
+					<p:commandButton value="Cancelar" process="@this"
 						oncomplete="PF('dialogProdutoNovo').hide();" />
 				</h:panelGrid>
 			</h:form>
@@ -194,7 +194,6 @@
 						requiredMessage="O campo Quantidade é obrigatório..."
 						validatorMessage="Informe um valor válido entre 0 e 99.">
 
-						<f:convertNumber pattern="0.00" />
 						<f:validateLongRange minimum="0" maximum="99" />
 					</h:inputText>
 
