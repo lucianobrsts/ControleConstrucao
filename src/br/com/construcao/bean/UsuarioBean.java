@@ -13,10 +13,9 @@ import br.com.construcao.util.JSFUtil;
 @ManagedBean(name = "MBUsuario")
 @ViewScoped
 public class UsuarioBean {
+	private Usuario usuario;
 	private ArrayList<Usuario> itens;
 	private ArrayList<Usuario> itensFiltrados;
-
-	private Usuario usuario;
 
 	public ArrayList<Usuario> getItens() {
 		return itens;
