@@ -16,12 +16,12 @@ public class ProdutoDAOTest {
 	@Ignore
 	public void salvar() throws SQLException {
 		Fabricante f = new Fabricante();
-		f.setIdFabricante(2L);
+		f.setIdFabricante(3L);
 
 		Produto p = new Produto();
-		p.setNome("Fita Isolante");
-		p.setQuantidade(20L);
-		p.setValor(6.50);
+		p.setNome("Fio 2'");
+		p.setQuantidade(30L);
+		p.setValor(2.50);
 		p.setFabricante(f);
 
 		ProdutoDAO dao = new ProdutoDAO();
@@ -54,20 +54,21 @@ public class ProdutoDAOTest {
 		ProdutoDAO dao = new ProdutoDAO();
 		dao.excluir(p);
 	}
-	
+
 	@Test
-	public void editar() throws SQLException{
+	@Ignore
+	public void editar() throws SQLException {
 		Produto p = new Produto();
 		p.setIdProduto(1L);
 		p.setNome("Verniz vitral");
 		p.setValor(15.00);
 		p.setQuantidade(12L);
-		
+
 		Fabricante f = new Fabricante();
 		f.setIdFabricante(7L);
-		
+
 		p.setFabricante(f);
-		
+
 		ProdutoDAO dao = new ProdutoDAO();
 		dao.editar(p);
 	}
